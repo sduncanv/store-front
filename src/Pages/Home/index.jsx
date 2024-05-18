@@ -4,7 +4,7 @@ import Layout from '../../Components/Layout'
 
 function Home() {
 
-    const context = useContext(StoreContext)
+    // const context = useContext(StoreContext)
 
     return (
         <Layout>

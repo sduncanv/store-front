@@ -1,12 +1,8 @@
-import { useContext } from 'react'
-// import { NavLink } from "react-router-dom";
-import { StoreContext } from '../../Context'
+import './Footer.css'
 
 const Footer = () => {
-    const context = useContext(StoreContext)
-
     return (
-        <nav className="">Footer</nav>
+        <footer className="footer-main">Footer</footer>
     )
 }
 
