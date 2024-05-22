@@ -1,12 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --back-input-color:  #d1d1d1;
+}
+
 .navbar-main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f8f8f8;
     padding: 10px;
     text-align: center;
-    border-bottom: 1px solid #ddd;
-    height: 75px;
+    height: 120px;
 }
 
 .navbar-ul {
@@ -21,12 +25,23 @@
     list-style: none;
 }
 
+.navbar-search {
+    padding: 0 10px 0 20px;
+}
+
+.navbar-li h1 {
+    font-family: "Freeman", sans-serif;
+    font-size: 55px;
+}
+
 .navbar-li-div {
-    background-color: white;
+    background-color: var(--back-input-color);
+    /*
     border: gray;
     border-style: solid;
-    border-radius: 10px;
-    padding: 5px;
+    */
+    border-radius: 8px;
+    padding: 5px 7px;
 }
 
 .navbar-input {
@@ -46,11 +61,26 @@
 .navbar-li-2 {
     padding: 0 5px;
     list-style: none;
+    font-size: 25px;
+}
+
+.navbar-li-2 a {
+    text-decoration: none;
+}
+
+.product-cart-icon {
+    width: 1.5rem; 
+    height: 1.5rem; 
+    color: #000000; 
+}
+
+.li-cart-icon {
+    display: flex;
+    align-items: center
 }
 
 @media (max-width: 600px) {
     .navbar-search {
-        background-color: blueviolet;
         display: none;
     }
 

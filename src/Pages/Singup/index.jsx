@@ -1,8 +1,22 @@
 import React, { useState, useContext } from 'react';
-import { FormControl, FormLabel, Input, Button, InputGroup, InputRightElement } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
+import {
+    FormControl, FormLabel, Input, Button, InputGroup, InputRightElement,
+    FormHelperText, FormErrorMessage, useDisclosure,
+
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton
+} from '@chakra-ui/react'
 import Layout from '../../Components/Layout'
 import { StoreContext } from '../../Context'
 import './Singup.css'
+import isOpen from '../AuthenticateUser'
+
 
 function PasswordInput() {
 
@@ -30,13 +44,14 @@ function Singup() {
 
     const context = useContext(StoreContext)
 
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const initialRef = React.useRef(null)
+    const finalRef = React.useRef(null)
+
     const CreateUser = () => {
 
-        // console.log('username: ', context.username)
-        // console.log('password: ', context.password)
-        // console.log('email: ', context.email)
-        // console.log('name: ', context.name)
-        // console.log('firstLastname: ', context.firstLastname)
+        // context.setOpenModal(true)
+        onOpen()
 
         const requestOptions = {
             method: 'POST',
@@ -52,19 +67,71 @@ function Singup() {
             )
         };
 
-        // console.log('Requeeeeeest')
+        console.log('Requeeeeeest')
 
-        fetch('http://localhost:3000/dev/user', requestOptions)
-            .then(response => response.json())
-            .then(data => context.setDataSingup(data));
+        // fetch('http://localhost:3000/dev/user', requestOptions)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         context.setDataSingup(data)
+        //     });
 
-        // print('dataSingup: ', context.dataSingup)
-
-        return context.dataSingup
     }
 
+    const [input, setInput] = useState('')
+    const handleInputChange = (e) => setInput(e.target.value)
+    const isError = input === ''
+    
     return (
         <Layout>
+            { isOpen ? (
+            <div>
+                <Modal
+                colorScheme='red'
+                initialFocusRef={initialRef}
+                finalFocusRef={finalRef}
+                isOpen={isOpen}
+                onClose={onClose}
+                >
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalHeader>Create your account</ModalHeader>
+                        <ModalCloseButton />
+                        <ModalBody pb={6}>
+                            {/* <FormControl>
+                            <FormLabel>First name</FormLabel>
+                            <Input ref={initialRef} placeholder='First name' />
+                            </FormControl>
+
+                            <FormControl mt={4}>
+                            <FormLabel>Last name</FormLabel>
+                            <Input placeholder='Last name' />
+                            </FormControl> */}
+
+                            <FormControl className='FormControl' isRequired>
+                                <FormLabel className='FormLabel' >Código: </FormLabel>
+                                <Input placeholder='Enter your code.' className='Input'
+                                onChange={(event) => context.setCodeAuth(event.target.value)}
+                                type='text' name='code' />
+                            </FormControl>
+
+                            <FormControl className='FormControl'>
+                                <Link to='/authenticated-user'>
+                                    <Button className='ButtonControl'
+                                    onClick={onClose} type='submit'>Autenticar</Button>
+                                </Link>
+                            </FormControl>
+                        </ModalBody>
+
+                        {/* <ModalFooter>
+                            <Button colorScheme='blue' mr={3}>
+                            Save
+                            </Button>
+                            <Button onClick={onClose}>Cancel</Button>
+                        </ModalFooter> */}
+                    </ModalContent>
+                </Modal>
+            </div>
+            ) : (
             <div className='singup-main'>
                 <h1 className='singup-title'>Registrarse</h1>
 
@@ -82,11 +149,24 @@ function Singup() {
                     type='text' name='first_lastname' />
                 </FormControl>
 
-                <FormControl className='FormControl' isRequired>
+                <FormControl className='FormControl' isRequired isInvalid={isError}>
                     <FormLabel className='FormLabel' >Email: </FormLabel>
-                    <Input placeholder='Enter your email.' className='Input'
-                    onChange={(event) => context.setEmail(event.target.value)}
-                    type='email' name='email' />
+                    <Input
+                    type='email'
+                    name='email'
+                    className='Input'
+                    placeholder='Enter your email.'
+                    value={input}
+                    onChange={handleInputChange}
+                    // onChange={(event) => context.setEmail(event.target.value)}
+                    />
+                    {
+                        !isError ? (
+                            <FormHelperText>Ingresa tu correo.</FormHelperText>
+                        ) : (
+                            <FormErrorMessage>El correo es obligatorio.</FormErrorMessage>
+                        )
+                    }
                 </FormControl>
 
                 <FormControl className='FormControl' isRequired>
@@ -102,9 +182,18 @@ function Singup() {
                 </FormControl>
 
                 <FormControl className='FormControl'>
-                    <Button className='ButtonControl' onClick={() => CreateUser()} type='submit'>Registrarse</Button>
+                    <Link
+                    // to='/authenticate-user'
+                    >
+                        <Button
+                        className='ButtonControl' type='submit'
+                        onClick={() => {
+                            CreateUser();
+                        }}>Registrarse</Button>
+                    </Link>
                 </FormControl>
             </div>
+            )}
         </Layout>
     )
 }

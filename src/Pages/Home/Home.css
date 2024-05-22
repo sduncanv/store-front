@@ -1,0 +1,19 @@
+.product-main {
+    width: 100%;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+}
+
+@media (max-width: 1023px) {
+    .product-main {
+        grid-template-columns: repeat(2, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .product-main {
+      grid-template-columns: repeat(1, minmax(150px, 1fr));
+    }
+}

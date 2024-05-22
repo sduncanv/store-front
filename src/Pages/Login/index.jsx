@@ -10,9 +10,6 @@ function Login() {
 
     const LoginUser = () => {
 
-        // console.log('username: ', context.username)
-        // console.log('password: ', context.password)
-
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -30,8 +27,6 @@ function Login() {
             .then(response => response.json())
             .then(data => context.setPrueba(data));
 
-        print('setPrueba: ', context.setPrueba)
-        return true
     }
 
     return (
@@ -56,8 +51,13 @@ function Login() {
                 </FormControl>
 
                 <FormControl className='FormControl'>
-                    <Button className='ButtonControl' onClick={() => LoginUser()} type='submit'>Iniciar</Button>
+                    <Button
+                    className='ButtonControl'
+                    type='submit'
+                    onClick={() => LoginUser()}>Iniciar</Button>
                 </FormControl>
+
+                <h3>¿No tienes una cuenta? <a href="/singup">Crea una cuenta</a></h3>
             </div>
         </Layout>
     )

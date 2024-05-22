@@ -1,10 +1,11 @@
 import { useContext } from 'react'
+import { PlusIcon, CheckIcon, ShoppingBagIcon } from '@heroicons/react/24/solid'
 import { StoreContext } from '../../Context'
 import './Navbar.css'
 
 const Navbar = () => {
 
-    // const context = useContext(StoreContext)
+    const context = useContext(StoreContext)
 
     return (
         <nav className='navbar-main'>
@@ -18,6 +19,7 @@ const Navbar = () => {
                         type='text'
                         placeholder='Search a product'
                         className='navbar-input'
+                        onChange={(event) => context.setSearchByTitle(event.target.value)}
                         />
                         <button className='navbar-input-botton'>
                             🔍
@@ -27,13 +29,16 @@ const Navbar = () => {
             </ul>
             <ul className='navbar-ul'>
                 <li className='navbar-li-2'>
-                    <a href="/login">Log In</a>
+                    <a href="/login">Iniciar sesión</a>
                 </li>
+                {/*
                 <li className='navbar-li-2'>
-                    <a href="/singup">Sing Up</a>
-                </li>
-                <li className='navbar-li-2'>
-                    🛒
+                    <a href="/singup">Crear cuenta</a>
+                </li> 
+                */}
+                <li className='navbar-li-2 li-cart-icon'>
+                    <ShoppingBagIcon className='product-cart-icon'></ShoppingBagIcon>
+                    <div>{context.count}</div>
                 </li>
             </ul>
         </nav>
