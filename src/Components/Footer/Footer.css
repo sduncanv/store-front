@@ -1,6 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Freeman&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mooli&family=Mulish&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mooli&family=Mulish:wght@200&display=swap');
+
+:root {
+    --blue-level-1: #0458a0;
+    --blue-level-2: #0079d4;
+    --blue-level-3: #4bc7ff;
+    --cian-color: #0fffff;
+    --back-input-color: rgba(4, 4, 4, .1);
+
+    --freeman-font: "Freeman", sans-serif;
+    --mulish-font: "Mulish", sans-serif;
+}
+
 .footer-main {
-    background-color: #f8f8f8;
+    background-color: var(--blue-level-2);
     padding: 10px;
     text-align: center;
     border-top: 1px solid #ddd;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

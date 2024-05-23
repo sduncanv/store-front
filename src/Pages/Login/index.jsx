@@ -32,32 +32,43 @@ function Login() {
     return (
         <Layout>
             <div className='login-main'>
-                <h1 className='login-title'>Iniciar Sessión</h1>
+                <h1 className='login-title'>Iniciar sesión</h1>
 
                 <FormControl className='FormControl' isRequired>
-                    <FormLabel className='FormLabel'>Username: </FormLabel>
+                    <FormLabel className='FormLabelLogin'>Username</FormLabel>
                     <Input
-                    placeholder='Enter your username.' className='Input'
-                    onChange={(event) => context.setUsername(event.target.value)}
-                    type='text' name='username' />
+                        type='text'
+                        name='username'
+                        placeholder=' Ingresa un nombre de usuario'
+                        className='InputLogin'
+                        onChange={(event) => context.setUsername(event.target.value)}
+                    />
                 </FormControl>
 
                 <FormControl className='FormControl'>
-                    <FormLabel className='FormLabel'>Password:</FormLabel>
+                    <FormLabel className='FormLabelLogin'>Password</FormLabel>
                     <Input 
-                    placeholder='Enter your password.'
-                    className='Input' onChange={(event) => context.setPassword(event.target.value)}
-                    type='text' name='password' />
+                        type='text'
+                        name='password'
+                        placeholder=' Ingresa una contraseña'
+                        className='InputLogin'
+                        onChange={(event) => context.setPassword(event.target.value)}
+                    />
+                    <h3 className='login-pass-question'>
+                        <a href="">¿Olvidaste tu contraseña?</a>
+                    </h3>
                 </FormControl>
 
-                <FormControl className='FormControl'>
+                <FormControl className='FormControl FormControl-Cel'>
                     <Button
-                    className='ButtonControl'
+                    className='ButtonControlLogin'
                     type='submit'
-                    onClick={() => LoginUser()}>Iniciar</Button>
+                    onClick={() => LoginUser()}>Iniciar sesión</Button>
+                    <h3 className='login-singup-question'>
+                        ¿No tienes una cuenta aún? <a href="/singup">Crea una cuenta</a>
+                    </h3>
                 </FormControl>
 
-                <h3>¿No tienes una cuenta? <a href="/singup">Crea una cuenta</a></h3>
             </div>
         </Layout>
     )

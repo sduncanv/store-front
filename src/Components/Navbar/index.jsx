@@ -38,7 +38,7 @@ const Navbar = () => {
                 */}
                 <li className='navbar-li-2 li-cart-icon'>
                     <ShoppingBagIcon className='product-cart-icon'></ShoppingBagIcon>
-                    <div>{context.count}</div>
+                    <div className='navbar-cart'>{context.count}</div>
                 </li>
             </ul>
         </nav>

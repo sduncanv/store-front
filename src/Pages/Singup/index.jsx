@@ -12,6 +12,7 @@ import {
     ModalBody,
     ModalCloseButton
 } from '@chakra-ui/react'
+import { EyeSlashIcon, EyeIcon } from '@heroicons/react/24/solid'
 import Layout from '../../Components/Layout'
 import { StoreContext } from '../../Context'
 import './Singup.css'
@@ -27,13 +28,20 @@ function PasswordInput() {
   
     return (
         <InputGroup size='md'>
-            <Input className='Input' pr='4.5rem'
+            <Input className='InputSingup'
             type={show ? 'text' : 'password'} placeholder='Enter password'
             onChange={(event) => context.setPassword(event.target.value)}
             />
-            <InputRightElement width='4.5rem'>
+            <InputRightElement className='InputRightElement'>
                 <Button h='1.75rem' size='sm' onClick={handleClick}>
-                    {show ? 'Hide' : 'Show'}
+                    {
+                        show ?
+                        <EyeIcon className='EyeSlashIcon'></EyeIcon>
+                        // 'Hide'
+                        :
+                        <EyeSlashIcon className='EyeSlashIcon'></EyeSlashIcon>
+                        // 'Show'
+                    }
                 </Button>
             </InputRightElement>
         </InputGroup>
@@ -108,15 +116,15 @@ function Singup() {
                             </FormControl> */}
 
                             <FormControl className='FormControl' isRequired>
-                                <FormLabel className='FormLabel' >Código: </FormLabel>
-                                <Input placeholder='Enter your code.' className='Input'
+                                <FormLabel className='FormLabelSingup' >Código: </FormLabel>
+                                <Input placeholder='Enter your code.' className='InputSingup'
                                 onChange={(event) => context.setCodeAuth(event.target.value)}
                                 type='text' name='code' />
                             </FormControl>
 
                             <FormControl className='FormControl'>
                                 <Link to='/authenticated-user'>
-                                    <Button className='ButtonControl'
+                                    <Button className='ButtonControlSingup'
                                     onClick={onClose} type='submit'>Autenticar</Button>
                                 </Link>
                             </FormControl>
@@ -133,28 +141,28 @@ function Singup() {
             </div>
             ) : (
             <div className='singup-main'>
-                <h1 className='singup-title'>Registrarse</h1>
+                <h1 className='singup-title'>Crear cuenta</h1>
 
                 <FormControl className='FormControl' isRequired>
-                    <FormLabel className='FormLabel' >Nombres: </FormLabel>
-                    <Input placeholder='Enter your name.' className='Input'
+                    <FormLabel className='FormLabelSingup' >Nombres: </FormLabel>
+                    <Input placeholder='Enter your name.' className='InputSingup'
                     onChange={(event) => context.setName(event.target.value)}
                     type='text' name='name' />
                 </FormControl>
 
                 <FormControl className='FormControl' isRequired>
-                    <FormLabel className='FormLabel' >Primer apellido: </FormLabel>
-                    <Input placeholder='Enter your first lastname.' className='Input'
+                    <FormLabel className='FormLabelSingup' >Primer apellido: </FormLabel>
+                    <Input placeholder='Enter your first lastname.' className='InputSingup'
                     onChange={(event) => context.setFirstLastname(event.target.value)}
                     type='text' name='first_lastname' />
                 </FormControl>
 
                 <FormControl className='FormControl' isRequired isInvalid={isError}>
-                    <FormLabel className='FormLabel' >Email: </FormLabel>
+                    <FormLabel className='FormLabelSingup' >Email: </FormLabel>
                     <Input
                     type='email'
                     name='email'
-                    className='Input'
+                    className='InputSingup'
                     placeholder='Enter your email.'
                     value={input}
                     onChange={handleInputChange}
@@ -170,27 +178,31 @@ function Singup() {
                 </FormControl>
 
                 <FormControl className='FormControl' isRequired>
-                    <FormLabel className='FormLabel' >Username: </FormLabel>
-                    <Input placeholder='Enter your username.' className='Input'
+                    <FormLabel className='FormLabelSingup' >Username: </FormLabel>
+                    <Input placeholder='Enter your username.' className='InputSingup'
                     onChange={(event) => context.setUsername(event.target.value)}
                     type='text' name='username' />
                 </FormControl>
 
                 <FormControl className='FormControl'>
-                    <FormLabel className='FormLabel'>Contraseña: </FormLabel>
+                    <FormLabel className='FormLabelSingup'>Contraseña: </FormLabel>
                     <PasswordInput />
                 </FormControl>
 
-                <FormControl className='FormControl'>
-                    <Link
+                <FormControl className='FormControl FormControl-Cel-Singup'>
+                    <Button
+                    className='ButtonControlSingup'
+                    type='submit'
+                    onClick={() => {
+                        CreateUser();
+                    }}>Crear cuenta</Button>
+                    <h3 className='singup-login-question'>
+                        ¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a>
+                    </h3>
+                    {/* <Link
                     // to='/authenticate-user'
                     >
-                        <Button
-                        className='ButtonControl' type='submit'
-                        onClick={() => {
-                            CreateUser();
-                        }}>Registrarse</Button>
-                    </Link>
+                    </Link> */}
                 </FormControl>
             </div>
             )}
