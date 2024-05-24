@@ -1,7 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Freeman&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mooli&family=Mulish&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mooli&family=Mulish:wght@200&display=swap');
 
 :root {
-    --blue: #04e6f6;
+    --blue-level-1: #0458a0;
+    --blue-level-2: #0079d4;
+    --cian-color: #0fffff;
+    --back-input-color: rgba(4, 4, 4, .1);
+
+    --freeman-font: "Freeman", sans-serif;
+    --mulish-font: "Mulish", sans-serif;
 }
 
 .product-detail-main {
@@ -37,13 +45,13 @@
     width: 40px;
     height: 40px;
     background-color: #ffffff;
-    border: solid 1px var(--blue);
+    border: solid 1px var(--blue-level-1);
 }
 
 .product-add-icon {
     width: 1.5rem;
     height: 1.5rem;
-    color: var(--blue);
+    color: var(--blue-level-1);
     cursor: pointer;
 }
 

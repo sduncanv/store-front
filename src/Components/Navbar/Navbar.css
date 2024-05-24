@@ -14,6 +14,7 @@
     padding: 10px;
     text-align: center;
     height: 120px;
+    /* box-shadow: rgba(149, 157, 165, 0.2) 10px 0px 55px; */
 }
 
 .navbar-ul {
@@ -29,7 +30,7 @@
 }
 
 .navbar-search {
-    padding: 0 10px 0 20px;
+    padding: 10px 10px 0 50px;
 }
 
 .navbar-li h1 {
@@ -43,8 +44,11 @@
     border: gray;
     border-style: solid;
     */
-    border-radius: 8px;
-    padding: 5px 7px;
+    border-radius: 5px;
+    padding: 0 7px;
+    display: flex;
+    align-items: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .navbar-input {

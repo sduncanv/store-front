@@ -5,16 +5,16 @@ import Footer from '../../Components/Footer'
 import Home from '../Home'
 import Login from '../Login'
 import Singup from '../Singup'
-import AuthenticateUser from '../AuthenticateUser'
-import AuthMessage from '../AuthMessage'
+import Auth from '../../Components/Auth'
+// import AuthMessage from '../AuthMessage'
 
 const AppRoutes = () => {
     let routes = useRoutes([
         {path: '/', element: <Home/>},
         {path: '/login', element: <Login/>},
         {path: '/singup', element: <Singup/>},
-        {path: '/authenticate-user', element: <AuthenticateUser/>},
-        {path: '/authenticate-message', element: <AuthMessage/>},
+        {path: '/authenticate-user', element: <Auth/>},
+        // {path: '/authenticate-message', element: <AuthMessage/>},
     ])
 
     return routes

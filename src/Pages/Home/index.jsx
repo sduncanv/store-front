@@ -3,6 +3,7 @@ import { StoreContext } from '../../Context'
 import Layout from '../../Components/Layout'
 import Product from '../../Components/Product'
 import './Home.css'
+import HomeCover from '../../Components/HomeCover'
 
 function Home() {
 
@@ -30,6 +31,7 @@ function Home() {
 
     return (
         <Layout>
+            <HomeCover />
             <div className='product-main'>
                 {renderView()}
                 {/*

@@ -26,3 +26,4 @@ dist-ssr
 # Ignorar archivos generados por npm o yarn
 node_modules/
 dist/
+public/

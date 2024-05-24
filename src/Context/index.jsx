@@ -10,9 +10,12 @@ export const StoreProvider = ({children}) => {
     const [name, setName] = useState(0)
     const [firstLastname, setFirstLastname] = useState(0)
     const [codeAuth, setCodeAuth] = useState(0)
+    const [authAccount, setAuthAccount] = useState({})
+    const [showAlert, setShowAlert] = useState(false)
+    console.log('showAlert: ', showAlert)
 
     const [dataSingup, setDataSingup] = useState(0)
-    const [apiCodeAuth, setApiCodeAuth] = useState(0)
+    const [apiCodeAuth, setApiCodeAuth] = useState({})
     const [isRegistered, setIsRegistered] = useState();
 
     // products == items
@@ -28,7 +31,7 @@ export const StoreProvider = ({children}) => {
     
     // Shopping Cart · Add products to cart
     const [cartProducts, setCartProducts] = useState([])
-
+    
     const [searchByTitle, setSearchByTitle] = useState(null)
     
     const [filteredProducts, setFilteredProducts] = useState([])
@@ -37,10 +40,17 @@ export const StoreProvider = ({children}) => {
     const filteredProductsByTitle = (products, searchByTitle) => {
         return products?.filter(product => product.name.toLowerCase().includes(searchByTitle.toLowerCase()))
     }
-
+    
     useEffect(() => {
         if (searchByTitle) setFilteredProducts(filteredProductsByTitle(products, searchByTitle))
-    }, [products, searchByTitle])
+        }, [products, searchByTitle])
+
+    const [viewAuth, setViewAuth] = useState(false)
+    console.log('viewAuth: ', viewAuth)
+    const [authenticated, setAuthenticated] = useState(false);
+    console.log('authenticated: ', authenticated)
+    const [isOpen, setIsOpen] = useState(false)
+    const [authStatus, setAuthStatus] = useState(null);
 
     return (
         <StoreContext.Provider value={{
@@ -59,7 +69,12 @@ export const StoreProvider = ({children}) => {
             count, setCount,
             cartProducts, setCartProducts,
             searchByTitle, setSearchByTitle,
-            filteredProducts, setFilteredProducts
+            filteredProducts, setFilteredProducts,
+            viewAuth, setViewAuth,
+            showAlert, setShowAlert,
+            authenticated, setAuthenticated,
+            isOpen, setIsOpen,
+            authStatus, setAuthStatus
         }}>
             {children}
         </StoreContext.Provider>
