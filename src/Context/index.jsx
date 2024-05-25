@@ -12,7 +12,6 @@ export const StoreProvider = ({children}) => {
     const [codeAuth, setCodeAuth] = useState(0)
     const [authAccount, setAuthAccount] = useState({})
     const [showAlert, setShowAlert] = useState(false)
-    console.log('showAlert: ', showAlert)
 
     const [dataSingup, setDataSingup] = useState(0)
     const [apiCodeAuth, setApiCodeAuth] = useState({})
@@ -35,7 +34,6 @@ export const StoreProvider = ({children}) => {
     const [searchByTitle, setSearchByTitle] = useState(null)
     
     const [filteredProducts, setFilteredProducts] = useState([])
-    // console.log('filteredProducts: ', filteredProducts)
     
     const filteredProductsByTitle = (products, searchByTitle) => {
         return products?.filter(product => product.name.toLowerCase().includes(searchByTitle.toLowerCase()))
@@ -46,11 +44,26 @@ export const StoreProvider = ({children}) => {
         }, [products, searchByTitle])
 
     const [viewAuth, setViewAuth] = useState(false)
-    console.log('viewAuth: ', viewAuth)
+
     const [authenticated, setAuthenticated] = useState(false);
-    console.log('authenticated: ', authenticated)
+
     const [isOpen, setIsOpen] = useState(false)
     const [authStatus, setAuthStatus] = useState(null);
+
+    // products == items
+    const [typePoducts, setTypePoducts] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:3000/dev/types_products')
+        .then(response => response.json())
+        .then(data => setTypePoducts(data.data))
+    }, [])
+
+    const [nameProductToCreate, setNameProductToCreate] = useState('')
+    const [priceProductToCreate, setPriceProductToCreate] = useState('')
+    const [typeProductToCreate, setTypeProductToCreate] = useState(0)
+    const [descriptionProductToCreate, setDescriptionProductToCreate] = useState('')
+    const [imgProductToCreate, setImgProductToCreate] = useState(null)
+    const [dataCreateProductAPI, setDataCreateProductAPI] = useState({})
 
     return (
         <StoreContext.Provider value={{
@@ -74,7 +87,14 @@ export const StoreProvider = ({children}) => {
             showAlert, setShowAlert,
             authenticated, setAuthenticated,
             isOpen, setIsOpen,
-            authStatus, setAuthStatus
+            authStatus, setAuthStatus,
+            typePoducts, setTypePoducts,
+            nameProductToCreate, setNameProductToCreate,
+            priceProductToCreate, setPriceProductToCreate,
+            typeProductToCreate, setTypeProductToCreate,
+            descriptionProductToCreate, setDescriptionProductToCreate,
+            imgProductToCreate, setImgProductToCreate,
+            dataCreateProductAPI, setDataCreateProductAPI
         }}>
             {children}
         </StoreContext.Provider>

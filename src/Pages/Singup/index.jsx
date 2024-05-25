@@ -63,7 +63,6 @@ function Singup() {
             )
         };
 
-        console.log('Requeeeeeest singup')  
         context.setAuthenticated(true)
         context.setIsOpen(true)
 
@@ -112,15 +111,7 @@ function Singup() {
                             placeholder='Enter your email.'
                             value={input}
                             onChange={handleInputChange}
-                            // onChange={(event) => context.setEmail(event.target.value)}
                             />
-                            {/* {
-                                !isError ? (
-                                    <FormHelperText>Ingresa tu correo.</FormHelperText>
-                                    ) : (
-                                        <FormErrorMessage>El correo es obligatorio.</FormErrorMessage>
-                                    )
-                                } */}
                         </FormControl>
 
                         <FormControl className='FormControl' isRequired>
@@ -148,9 +139,6 @@ function Singup() {
                             <h3 className='singup-login-question'>
                                 ¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a>
                             </h3>
-                            {/* <Link
-                            to='/authenticate-user'>
-                            </Link> */}
                         </FormControl>
                     </div>
             }

@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { PlusIcon, CheckIcon, ShoppingBagIcon } from '@heroicons/react/24/solid'
+import { PlusIcon, CheckIcon } from '@heroicons/react/24/solid'
 import { StoreContext } from '../../Context'
 import './Product.css'
 

@@ -5,8 +5,8 @@ import Footer from '../../Components/Footer'
 import Home from '../Home'
 import Login from '../Login'
 import Singup from '../Singup'
+import CreateProduct from '../CreateProduct'
 import Auth from '../../Components/Auth'
-// import AuthMessage from '../AuthMessage'
 
 const AppRoutes = () => {
     let routes = useRoutes([
@@ -14,7 +14,7 @@ const AppRoutes = () => {
         {path: '/login', element: <Login/>},
         {path: '/singup', element: <Singup/>},
         {path: '/authenticate-user', element: <Auth/>},
-        // {path: '/authenticate-message', element: <AuthMessage/>},
+        {path: '/crear-producto', element: <CreateProduct/>},
     ])
 
     return routes

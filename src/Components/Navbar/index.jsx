@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { PlusIcon, CheckIcon, ShoppingBagIcon } from '@heroicons/react/24/solid'
+import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 import { StoreContext } from '../../Context'
 import './Navbar.css'
 
@@ -31,11 +31,6 @@ const Navbar = () => {
                 <li className='navbar-li-2'>
                     <a href="/login">Iniciar sesión</a>
                 </li>
-                {/*
-                <li className='navbar-li-2'>
-                    <a href="/singup">Crear cuenta</a>
-                </li> 
-                */}
                 <li className='navbar-li-2 li-cart-icon'>
                     <ShoppingBagIcon className='product-cart-icon'></ShoppingBagIcon>
                     <div className='navbar-cart'>{context.count}</div>
