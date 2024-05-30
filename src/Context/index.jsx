@@ -4,16 +4,13 @@ export const StoreContext = createContext()
 
 export const StoreProvider = ({children}) => {
 
-    const [username, setUsername] = useState(0)
-    const [password, setPassword] = useState(0)
-    const [email, setEmail] = useState(0)
-    const [name, setName] = useState(0)
-    const [firstLastname, setFirstLastname] = useState(0)
+    const [globalUsername, setGlobalUsername] = useState('')
+
     const [codeAuth, setCodeAuth] = useState(0)
-    const [authAccount, setAuthAccount] = useState({})
     const [showAlert, setShowAlert] = useState(false)
 
     const [dataSingup, setDataSingup] = useState(0)
+    console.log('dataSingup', dataSingup)
     const [apiCodeAuth, setApiCodeAuth] = useState({})
     const [isRegistered, setIsRegistered] = useState();
 
@@ -48,7 +45,7 @@ export const StoreProvider = ({children}) => {
     const [authenticated, setAuthenticated] = useState(false);
 
     const [isOpen, setIsOpen] = useState(false)
-    const [authStatus, setAuthStatus] = useState(null);
+    const [authStatus, setAuthStatus] = useState(0);
 
     // products == items
     const [typePoducts, setTypePoducts] = useState([])
@@ -67,14 +64,8 @@ export const StoreProvider = ({children}) => {
 
     return (
         <StoreContext.Provider value={{
-            username,
-            setUsername,
-            password,
-            setPassword,
             dataSingup, setDataSingup,
-            email, setEmail,
-            name, setName,
-            firstLastname, setFirstLastname,
+            globalUsername, setGlobalUsername,
             codeAuth, setCodeAuth,
             apiCodeAuth, setApiCodeAuth,
             isRegistered, setIsRegistered,
@@ -87,14 +78,14 @@ export const StoreProvider = ({children}) => {
             showAlert, setShowAlert,
             authenticated, setAuthenticated,
             isOpen, setIsOpen,
-            authStatus, setAuthStatus,
             typePoducts, setTypePoducts,
             nameProductToCreate, setNameProductToCreate,
             priceProductToCreate, setPriceProductToCreate,
             typeProductToCreate, setTypeProductToCreate,
             descriptionProductToCreate, setDescriptionProductToCreate,
             imgProductToCreate, setImgProductToCreate,
-            dataCreateProductAPI, setDataCreateProductAPI
+            dataCreateProductAPI, setDataCreateProductAPI,
+            authStatus, setAuthStatus
         }}>
             {children}
         </StoreContext.Provider>

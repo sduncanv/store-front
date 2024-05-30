@@ -42,8 +42,8 @@ const Product = (data) => {
                 {/*
                 <img src="https://trellat.es/wp-content/uploads/2015/02/javascript_logo.png" alt="" />
                 <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Jersei    -coll-alt.jpg" alt="" />
-                <img src="https://i.pinimg.com/236x/cb/e8/d3/cbe8d30386fc73a1bd319ed53f798823.jpg" alt="" />
-                */}
+                <img src={data.data.url} alt="" />
+            */}
                 <img src="https://acdn.mitiendanube.com/stores/002/413/552/products/x001-b8a45680c3a1883c8e169738468713791-2a2b3d0b3f1ac46b5e16973849453376-1024-1024.webp" alt="" />
                 {renderIcon(data.data.product_id)}
             </figure>

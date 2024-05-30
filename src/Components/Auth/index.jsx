@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { StoreContext } from '../../Context'
 import {
     FormControl, FormLabel, Input, Button,
@@ -22,14 +23,12 @@ function AlertForm() {
 
     const AuthUser = () => {
 
-        // onClose()
-
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(
                 {
-                    'username': context.username,
+                    'username': context.globalUsername,
                     'code': context.codeAuth,
                 }
             )
@@ -40,13 +39,7 @@ function AlertForm() {
             .then(data => {
                 context.setApiCodeAuth(data)
 
-                data.statusCode === 400 ? (
-                    context.setAuthStatus('error')
-                ) : data.statusCode === 200 ? (
-                    context.setAuthStatus('success')
-                ) : (
-                    context.setAuthStatus('error')
-                )
+                context.setAuthStatus(data.statusCode)
             });
     }
 
@@ -60,7 +53,7 @@ function AlertForm() {
             >
                 <AlertDialogOverlay />
                 {
-                    context.authStatus === 'success' ? (
+                    context.authStatus === 200 ? (
 
                         <AlertDialogContent>
                             <AlertDialogHeader>
@@ -73,14 +66,19 @@ function AlertForm() {
                             </AlertDialogBody>
                             <AlertDialogFooter>
                                 <FormControl className='FormControlAuth FormControl-Cel-Auth'>
-                                <Button ref={cancelRef} onClick={onClose}>
-                                    Ir a inicio
-                                </Button>
+                                <Link to='/'>
+                                    <Button
+                                        ref={cancelRef}
+                                        onClick={onClose}
+                                    >
+                                        Ir a inicio
+                                    </Button>
+                                </Link>
                                 </FormControl>
                             </AlertDialogFooter>
                         </AlertDialogContent>
     
-                    ) : context.authStatus === 'error' ? (
+                    ) : context.authStatus != 200 && context.authStatus != 0 ? (
 
                         <AlertDialogContent>
                             <AlertDialogHeader>
@@ -93,16 +91,18 @@ function AlertForm() {
                             </AlertDialogBody>
                             <AlertDialogFooter>
                                 <FormControl className='FormControlAuth FormControl-Cel-Auth'>
-                                <Button ref={cancelRef} onClick={onClose}>
-                                    Ir a inicio
-                                </Button>
+                                <Link to='/'>
+                                    <Button ref={cancelRef} onClick={onClose}>
+                                        Ir a inicio
+                                    </Button>
+                                </Link>
                                 </FormControl>
                             </AlertDialogFooter>
                             
                         </AlertDialogContent>
 
                     ) : (
-                        <AlertDialogContent>
+                        <AlertDialogContent marginTop={'300px'}>
                             <AlertDialogHeader>
                                 <h1 className='auth-title'>Autenticar cuenta</h1>
                             </AlertDialogHeader>
