@@ -9,33 +9,35 @@ export const StoreProvider = ({children}) => {
     const [codeAuth, setCodeAuth] = useState(0)
     const [showAlert, setShowAlert] = useState(false)
 
-    const [dataSingup, setDataSingup] = useState(0)
-    console.log('dataSingup', dataSingup)
+    const [dataSingup, setDataSingup] = useState({})
+    const [dataLogin, setDataLogin] = useState({})
+
     const [apiCodeAuth, setApiCodeAuth] = useState({})
     const [isRegistered, setIsRegistered] = useState();
 
-    // products == items
+    // Request to get all products from API
     const [products, setProducts] = useState([])
+
     useEffect(() => {
         fetch('http://localhost:3000/dev/products')
         .then(response => response.json())
         .then(data => setProducts(data.data))
     }, [])
-    
+
     // Shopping Cart · Increment quantity
     const [count, setCount] = useState(0)
-    
+
     // Shopping Cart · Add products to cart
     const [cartProducts, setCartProducts] = useState([])
-    
+
     const [searchByTitle, setSearchByTitle] = useState(null)
-    
+
     const [filteredProducts, setFilteredProducts] = useState([])
-    
+
     const filteredProductsByTitle = (products, searchByTitle) => {
         return products?.filter(product => product.name.toLowerCase().includes(searchByTitle.toLowerCase()))
     }
-    
+
     useEffect(() => {
         if (searchByTitle) setFilteredProducts(filteredProductsByTitle(products, searchByTitle))
         }, [products, searchByTitle])
@@ -47,7 +49,7 @@ export const StoreProvider = ({children}) => {
     const [isOpen, setIsOpen] = useState(false)
     const [authStatus, setAuthStatus] = useState(0);
 
-    // products == items
+    // Request to get all types products from API
     const [typePoducts, setTypePoducts] = useState([])
     useEffect(() => {
         fetch('http://localhost:3000/dev/types_products')
@@ -65,6 +67,7 @@ export const StoreProvider = ({children}) => {
     return (
         <StoreContext.Provider value={{
             dataSingup, setDataSingup,
+            dataLogin, setDataLogin,
             globalUsername, setGlobalUsername,
             codeAuth, setCodeAuth,
             apiCodeAuth, setApiCodeAuth,

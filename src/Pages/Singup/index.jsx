@@ -1,11 +1,10 @@
-import React, { useState, useContext } from 'react';
-import {
-    Input, Button, InputGroup, InputRightElement,
-    FormControl, FormLabel
-} from '@chakra-ui/react'
+import React, { useState, useContext } from 'react'
 import { EyeSlashIcon, EyeIcon } from '@heroicons/react/24/solid'
+import {
+    Input, Button, InputGroup, InputRightElement, FormControl, FormLabel
+} from '@chakra-ui/react'
 import Layout from '../../Components/Layout'
-import AlertForm from '../../Components/Auth';
+import AlertForm from '../../Components/Auth'
 import { StoreContext } from '../../Context'
 import {
     validateString, validateEmail, validateUsername, validatePassword,
@@ -55,7 +54,6 @@ function Singup() {
             .then(response => response.json())
             .then(data => {
                 context.setDataSingup(data)
-                console.log('res user 1: ', data)
             });
 
     }
@@ -234,7 +232,7 @@ function Singup() {
                                 type='submit'
                                 onClick={() => {CreateUser();}}
                                 isLoading={!resultValidationBotton}
-                                loadingText='Submitting'
+                                loadingText='LLena todos los campos'
                                 colorScheme={!resultValidationBotton ? 'teal' : 'gray'}
                                 variant={!resultValidationBotton ? 'solid' : 'outline'}
                             >

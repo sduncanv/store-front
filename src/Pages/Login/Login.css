@@ -77,6 +77,20 @@
     color: var(--blue-level-1);
 }
 
+.InputRightElement {
+    padding: 5px;
+}
+
+.InputRightElement button {
+    padding: 0 5px;
+    border: none;
+    background-color: transparent;
+}
+
+.EyeSlashIcon {
+    width: 20px;
+}
+
 .ButtonControlLogin {
     width: 50%;
     height: 45px;

@@ -116,13 +116,13 @@ export function validatePassword(password) {
     }
 
     // 2. Validar la presencia de mayúsculas
-    // const hasUpperCase = /[A-Z]/.test(password);
-    // if (!hasUpperCase) {
-    //     return {
-    //         error: "La contraseña debe contener al menos una mayúscula.",
-    //         isValid: false
-    //     };
-    // }
+    const charactersPass = /[!"#$%&'()*+,-./:;<=>?@\[\]^_{|}~]/.test(password);
+    if (!charactersPass) {
+        return {
+            error: "La contraseña debe contener caracter especia (@={}[]#?%).",
+            isValid: false
+        };
+    }
 
     if (password.length < 8) {
         return {
