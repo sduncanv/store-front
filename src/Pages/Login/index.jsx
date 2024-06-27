@@ -1,10 +1,9 @@
 import { useState, useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, NavLink } from 'react-router-dom'
 import { EyeSlashIcon, EyeIcon } from '@heroicons/react/24/solid'
 import {
     FormControl, FormLabel, Input, Button, InputGroup, InputRightElement
 } from '@chakra-ui/react'
-
 import { StoreContext } from '../../Context'
 import Layout from '../../Components/Layout'
 import './Login.css'
@@ -14,8 +13,10 @@ function Login() {
     const context = useContext(StoreContext)
     const navigate = useNavigate();
 
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const [usernameLocal, setUsernameLocal] = useState('');
+    const [passwordLocal, setPasswordLocal] = useState('');
+    const [showEye, setShowEye] = useState(false);
+    const [isErrorInLogin, setIsErrorInLogin] = useState(false);
 
     const LoginUser = () => {
 
@@ -24,41 +25,41 @@ function Login() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(
                 {
-                    'username': username,
-                    'password': password,
+                    'username': usernameLocal,
+                    'password': passwordLocal,
                 }
             )
         };
 
-        fetch('http://localhost:3000/dev/login', requestOptions)
+        // const URL = 'https://10h1dcdbp7.execute-api.us-east-1.amazonaws.com/dev/login';
+        const URL = 'http://localhost:3020/dev/login';
+
+        fetch(URL, requestOptions)
             .then(response => response.json())
             .then(data => {
-                context.setDataLogin(data)
-            });
-    }
+                context.setLoginApiResponse(data);
 
-    const [show, setShow] = useState(false)
-    const handleClick = () => setShow(!show)
+                if (data.statusCode == 200) {
+                    navigate('/');
+                } else {
+                    setIsErrorInLogin(true);
+                };
+            });
+    };
 
     const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
+        setUsernameLocal(event.target.value);
+        context.setGlobalUsername(event.target.value);
     };
 
     const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
+        setPasswordLocal(event.target.value);
     };
 
-    function handleClickButton() {
-        
+    const handleClickEye = () => setShowEye(!showEye)
+
+    function handleLoginButton() {
         LoginUser();
-
-        const isAuthenticated = context.dataLogin.statusCode;
-        if (isAuthenticated == 200) {
-            navigate("/");
-        } else {
-            navigate("/singup");
-        }
-
     }
 
     return (
@@ -66,34 +67,33 @@ function Login() {
             <div className='login-main'>
                 <h1 className='login-title'>Iniciar sesión</h1>
 
-                <FormControl className='FormControl' isRequired>
-                    <FormLabel className='FormLabelLogin'>
-                        Username
-                    </FormLabel>
+                <FormControl
+                    className='FormControl'
+                    // isRequired
+                >
+                    <FormLabel className='FormLabelLogin'>Usuario</FormLabel>
                     <Input
                         type='text'
                         name='username'
-                        placeholder=' Ingresa un nombre de usuario'
+                        placeholder=' Ingresa tu nombre de usuario.'
                         className='InputLogin'
                         onChange={handleUsernameChange}
                     />
                 </FormControl>
 
                 <FormControl className='FormControl'>
-                    <FormLabel className='FormLabelLogin'>
-                        Password
-                    </FormLabel>
+                    <FormLabel className='FormLabelLogin'>Contraseña</FormLabel>
                     <InputGroup size='md'>
                         <Input
-                            type={show ? 'text' : 'password'}
+                            type={showEye ? 'text' : 'password'}
                             className='InputLogin'
-                            placeholder='Enter password'
+                            placeholder='Ingresa tu contraseña.'
                             onChange={handlePasswordChange}
                         />
                         <InputRightElement className='InputRightElement'>
-                            <Button h='1.75rem' size='sm' onClick={handleClick}>
+                            <Button h='1.75rem' size='sm' onClick={handleClickEye}>
                                 {
-                                    show ?
+                                    showEye ?
                                         <EyeIcon className='EyeSlashIcon'></EyeIcon>
                                     :
                                         <EyeSlashIcon className='EyeSlashIcon'></EyeSlashIcon>
@@ -101,21 +101,28 @@ function Login() {
                             </Button>
                         </InputRightElement>
                     </InputGroup>
-                    {/* <h3 className='login-pass-question'>
-                        <a href="">¿Olvidaste tu contraseña?</a>
-                    </h3> */}
                 </FormControl>
+
+                {
+                    isErrorInLogin ? (
+                        <FormControl className='FormControl'>
+                            <FormLabel className='FormLabelLogin'>
+                                Credenciales incorrectas
+                            </FormLabel>
+                        </FormControl>
+                    ) : (null)
+                }
 
                 <FormControl className='FormControl FormControl-Cel'>
                     <Button
-                        className='ButtonControlLogin'
                         type='submit'
-                        onClick={handleClickButton}
+                        className='ButtonControlLogin'
+                        onClick={handleLoginButton}
                     >
                         Iniciar sesión
                     </Button>
                     <h3 className='login-singup-question'>
-                        ¿No tienes una cuenta aún? <a href="/singup">Crea una cuenta</a>
+                        ¿No tienes una cuenta aún? <NavLink to='/singup'>Crea una cuenta</NavLink>
                     </h3>
                 </FormControl>
 

@@ -1,11 +1,11 @@
-import React from 'react';
-import { UploadOutlined } from '@ant-design/icons';
-import { Button, message, Upload } from 'antd';
+import React from 'react'
+import { UploadOutlined } from '@ant-design/icons'
+import { Button, message, Upload } from 'antd'
 
 const props = {
 
     name: 'file',
-    action: 'http://localhost:3000/dev/products',
+    action: 'http://localhost:3030/dev/products',
     headers: {
         authorization: 'authorization-text',
     },

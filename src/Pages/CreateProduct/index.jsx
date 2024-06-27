@@ -1,19 +1,21 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { StoreContext } from '../../Context'
 import {
-    Input, Button, InputGroup, InputRightElement,
-    FormControl, FormLabel,
-    ChakraProvider, Select, Textarea
+    Input, Button, FormControl, FormLabel, Select, Textarea
 } from '@chakra-ui/react'
-import UploadImage from '../../Components/UploadImage';
-import Layout from '../../Components/Layout';
+// import UploadImage from '../../Components/UploadImage'
+import Layout from '../../Components/Layout'
 import './CreateProduct.css'
 
 const CreateProduct = () => {
 
     const context = useContext(StoreContext)
+    const [fileame, setFilename] = useState(null)
+    const navigate = useNavigate()
 
     const renderTypeProducts = () => {
+        
         if (context.typePoducts?.length > 0) {
             return (
                 context.typePoducts?.map(t_product => (
@@ -26,9 +28,23 @@ const CreateProduct = () => {
         }
     }
 
-    const CreateProductApi = () => {
+    const handleFileChange = (event) => {
 
-        // context.setViewAuth(true)
+        const file = event.target.files[0];
+        const filename = event.target.value;
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
+                setFilename(filename);
+                context.setImgProductToCreate(base64String);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const CreateProductApi = () => {
 
         const requestOptions = {
             method: 'POST',
@@ -36,25 +52,29 @@ const CreateProduct = () => {
             body: JSON.stringify(
                 {
                     'name': context.nameProductToCreate,
-                    'username': context.priceProductToCreate,
-                    'type_product_id': context.typeProductToCreate,
-                    'email': context.descriptionProductToCreate,
-                    'user_id': 1,
-                    'image': context.imgProductToCreate,
+                    'price': parseInt(context.priceProductToCreate),
+                    'type_product_id': parseInt(context.typeProductToCreate),
+                    'description': context.descriptionProductToCreate,
+                    'user_id': context.userData?.user_id,
+                    'username': context.globalUsername,
+                    'file': {
+                        'filename': fileame,
+                        'image': context.imgProductToCreate,
+                    }
                 }
             )
         };
 
-        context.setAuthenticated(true)
-        context.setIsOpen(true)
-
-        fetch('http://localhost:3000/dev/products', requestOptions)
+        const URL = 'http://localhost:3030/dev/products';
+        fetch(URL, requestOptions)
             .then(response => response.json())
             .then(data => {
-                console.log('data: ', data)
-                context.setDataCreateProductAPI(data)
-            });
+                context.setResultAPICreateProduct(data);
 
+                if (data.statusCode == 201) {
+                    navigate('/perfil');
+                }
+            });
     }
 
     return (
@@ -67,8 +87,8 @@ const CreateProduct = () => {
                     <Input
                         type='text'
                         name='product_name'
-                        placeholder='Nombre del producto'
                         className='InputSingup'
+                        placeholder=' Escribe el nombre del producto'
                         onChange={(event) => context.setNameProductToCreate(event.target.value)}
                     />
                 </FormControl>
@@ -85,10 +105,10 @@ const CreateProduct = () => {
                 </FormControl>
 
                 <FormControl className='FormControl'>
-                    <FormLabel className='FormLabelSingup'>Tipo del producto</FormLabel>
+                    <FormLabel className='FormLabelSingup'>Categoría del producto</FormLabel>
                     <Select
                         className='select-type-product'
-                        placeholder='Select country'
+                        // placeholder='Categoría del producto'
                         onChange={(event) => context.setTypeProductToCreate(event.target.value)}
                     >
                         {renderTypeProducts()}
@@ -99,27 +119,33 @@ const CreateProduct = () => {
                     <FormLabel className='FormLabelSingup' >Imagen</FormLabel>
                     {/* <UploadImage /> */}
                     <input
-                        onChange={(event) => context.setImgProductToCreate(event.target.value)}
+                        // onChange={(event) => context.setImgProductToCreate(event.target.files[0])}
+                        onChange={handleFileChange}
                         type="file" name="image" accept="image/*"
                     ></input>
                 </FormControl>
 
                 <FormControl className='FormControl' isRequired>
-                    <FormLabel className='FormLabelSingup' >Tipo del producto</FormLabel>
-                    <Textarea className='create-p-textarea' placeholder='Escribe sobre el producto' />
+                    <FormLabel className='FormLabelSingup' >Descripción del producto</FormLabel>
+                    <Textarea 
+                        onChange={(event) => context.setDescriptionProductToCreate(event.target.value)}
+                        className='create-p-textarea'
+                        placeholder='Escribe detalles del producto'
+                    />
                 </FormControl>
 
                 <FormControl className='FormControl FormControl-Cel-Singup'>
                     <Button
-                        className='ButtonControlSingup'
                         type='submit'
+                        className='ButtonControlSingup'
                         onClick={() => {CreateProductApi();}}
-                    >Crear producto</Button>
-
+                    >
+                        Crear producto
+                    </Button>
                 </FormControl>
             </div>
         </Layout>
     )
 }
 
-export default CreateProduct
+export default CreateProduct;

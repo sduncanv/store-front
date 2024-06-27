@@ -1,25 +1,19 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { StoreContext } from '../../Context'
+import React, { useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import {
-    FormControl, FormLabel, Input, Button,
-    ChakraProvider,
-    AlertDialog,
-    AlertDialogBody,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogContent,
+    FormControl, FormLabel, Input, Button, ChakraProvider, AlertDialog,
+    AlertDialogBody, AlertDialogFooter, AlertDialogHeader, AlertDialogContent,
     AlertDialogOverlay,
 } from '@chakra-ui/react'
+import { StoreContext } from '../../Context'
 import './Auth.css'
 
 
 function AlertForm() {
 
-    const context = useContext(StoreContext)
-
-    const onClose = () => context.setIsOpen(false)
-    const cancelRef = React.useRef()
+    const context = useContext(StoreContext);
+    const navigate = useNavigate();
+    const cancelRef = React.useRef();
 
     const AuthUser = () => {
 
@@ -29,56 +23,39 @@ function AlertForm() {
             body: JSON.stringify(
                 {
                     'username': context.globalUsername,
-                    'code': context.codeAuth,
+                    'code': context.codeAuthEmail,
                 }
             )
         };
 
-        fetch('http://localhost:3000/dev/authenticate_user', requestOptions)
+        // const URL = 'https://10h1dcdbp7.execute-api.us-east-1.amazonaws.com/dev/authenticate_user';
+        const URL = 'http://localhost:3020/dev/authenticate_user';
+        fetch(URL, requestOptions)
             .then(response => response.json())
             .then(data => {
-                context.setApiCodeAuth(data)
+                context.setResultApiCodeAuth(data)
 
-                context.setAuthStatus(data.statusCode)
+                if (data.statusCode == 200) {
+                    navigate('/');
+                }
             });
+    }
+
+    const handleClickButtonAuth = () => {
+        context.setIsOpenAlertForm(false)
     }
 
     return (
         <ChakraProvider>
             <AlertDialog
                 alignItems='center'
-                isOpen={context.isOpen}
+                isOpen={context.isOpenAlertForm}
                 leastDestructiveRef={cancelRef}
-                onClose={onClose}
+                onClose={context.isOpenAlertForm}
             >
                 <AlertDialogOverlay />
                 {
-                    context.authStatus === 200 ? (
-
-                        <AlertDialogContent>
-                            <AlertDialogHeader>
-                                <h1 className='auth-title'>Autenticar cuenta</h1>
-                            </AlertDialogHeader>
-                            <AlertDialogBody>
-                                <div className='auth-main'>
-                                    Tu cuenta fue autenticada con exito.
-                                </div>
-                            </AlertDialogBody>
-                            <AlertDialogFooter>
-                                <FormControl className='FormControlAuth FormControl-Cel-Auth'>
-                                <Link to='/'>
-                                    <Button
-                                        ref={cancelRef}
-                                        onClick={onClose}
-                                    >
-                                        Ir a inicio
-                                    </Button>
-                                </Link>
-                                </FormControl>
-                            </AlertDialogFooter>
-                        </AlertDialogContent>
-    
-                    ) : context.authStatus != 200 && context.authStatus != 0 ? (
+                    context.resultApiCodeAuth.statusCode != 200 && context.resultApiCodeAuth.statusCode != 0 ? (
 
                         <AlertDialogContent>
                             <AlertDialogHeader>
@@ -92,16 +69,16 @@ function AlertForm() {
                             <AlertDialogFooter>
                                 <FormControl className='FormControlAuth FormControl-Cel-Auth'>
                                 <Link to='/'>
-                                    <Button ref={cancelRef} onClick={onClose}>
+                                    <Button ref={cancelRef} onClick={handleClickButtonAuth}>
                                         Ir a inicio
                                     </Button>
                                 </Link>
                                 </FormControl>
                             </AlertDialogFooter>
-                            
                         </AlertDialogContent>
 
                     ) : (
+
                         <AlertDialogContent marginTop={'300px'}>
                             <AlertDialogHeader>
                                 <h1 className='auth-title'>Autenticar cuenta</h1>
@@ -113,24 +90,25 @@ function AlertForm() {
                                         <Input
                                             placeholder='Ingresa el código.'
                                             className='InputAuth'
-                                            onChange={(event) => context.setCodeAuth(event.target.value)}
+                                            onChange={(event) => context.setCodeAuthEmail(event.target.value)}
                                             type='text'
                                             name='code'
-                                            />
+                                        />
                                     </FormControl>
                                 </div>
                             </AlertDialogBody>
                             <AlertDialogFooter>
                                 <FormControl className='FormControlAuth FormControl-Cel-Auth'>
                                     <Button
-                                        ref={cancelRef}
-                                        className='ButtonControlAuth'
                                         type='submit'
+                                        className='ButtonControlAuth'
+                                        ref={cancelRef}
                                         onClick={() => {AuthUser();}}
                                     >Autenticar cuenta</Button>
                                 </FormControl>
                             </AlertDialogFooter>
                         </AlertDialogContent>
+
                     )
                 }
             </AlertDialog>

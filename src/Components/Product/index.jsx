@@ -45,13 +45,13 @@ const Product = (data) => {
                 <img src={data.data.url} alt="" />
             */}
                 <img src="https://acdn.mitiendanube.com/stores/002/413/552/products/x001-b8a45680c3a1883c8e169738468713791-2a2b3d0b3f1ac46b5e16973849453376-1024-1024.webp" alt="" />
-                {renderIcon(data.data.product_id)}
+                {/* {renderIcon(data.data.product_id)} */}
             </figure>
             <div className='product-data'>
                 <span>{data.data.name}</span>
                 <div>
                     <p className='product-price'>$ {data.data.price}</p>
-                    <p>Escribenos al whatsapp</p>
+                    <p>{data.data.created_at}</p>
                 </div>
             </div>
         </div>

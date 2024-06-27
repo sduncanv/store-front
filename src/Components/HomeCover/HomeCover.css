@@ -13,4 +13,44 @@
     border-radius: 25px;
     padding: 20px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-cover-main div h1 {
+    color: white;
+    font-size: 50px;
+}
+
+@media (max-width: 1023px) {
+    .home-cover-main {
+        height: 150px;
+    }
+
+    .home-cover-main div {
+        background-color: blue;
+        height: 150px;
+    }
+
+    .home-cover-main div h1 {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .home-cover-main {
+        height: 100px;
+        margin: 10px 0 0 0;
+    }
+
+    .home-cover-main div {
+        background-color: blue;
+        height: 80px;
+    }
+
+    .home-cover-main div h1 {
+        font-size: 25px;
+    }
 }

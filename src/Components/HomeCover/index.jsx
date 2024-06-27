@@ -4,9 +4,9 @@ const HomeCover = () => {
     return (
         <div className='home-cover-main'>
             <div>
-                <h1>aa</h1>
+                <h1>Mis productos</h1>
             </div>
-    </div>
+        </div>
     )
 }
 

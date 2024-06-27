@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react'
+import { Navigate, NavLink } from 'react-router-dom'
 import { EyeSlashIcon, EyeIcon } from '@heroicons/react/24/solid'
 import {
     Input, Button, InputGroup, InputRightElement, FormControl, FormLabel
 } from '@chakra-ui/react'
+import AlertForm from '../../Components/AlertForm'
 import Layout from '../../Components/Layout'
-import AlertForm from '../../Components/Auth'
 import { StoreContext } from '../../Context'
 import {
     validateString, validateEmail, validateUsername, validatePassword,
@@ -14,22 +15,63 @@ import './Singup.css'
 
 function Singup() {
 
-    const context = useContext(StoreContext)
+    const context = useContext(StoreContext);
 
-    const [name, setName] = useState('')
-    const [resultName, setResultName] = useState({})
+    if (context.userData) {
+        return <Navigate to='/' />
+    };
 
-    const [firstLastname, setFirstLastname] = useState('')
-    const [resultFirstLastname, setResultFirstLastname] = useState({})
+    const [nameLocal, setNameLocal] = useState('')
+    const [resultNameLocal, setResultNameLocal] = useState({})
 
-    const [email, setEmail] = useState('')
-    const [resultEmail, setResultEmail] = useState({})
+    const [firstLastnameLocal, setFirstLastnameLocal] = useState('')
+    const [resultFirstLastnameLocal, setResultFirstLastnameLocal] = useState({})
 
-    const [username, setUsername] = useState('')
-    const [resultUsername, setResultUsername] = useState({})
+    const [emailLocal, setEmailLocal] = useState('')
+    const [resultEmailLocal, setResultEmailLocal] = useState({})
+
+    const [usernameLocal, setUsernameLocal] = useState('')
+    const [resultUsernameLocal, setResultUsernameLocal] = useState({})
     
-    const [password, setPassword] = useState('')
-    const [resultPassword, setResultPassword] = useState({})
+    const [passwordLocal, setPasswordLocal] = useState('')
+    const [resultPasswordLocal, setResultPasswordLocal] = useState({})
+
+    const handleNameChange = (event) => {
+        setNameLocal(event.target.value);
+        setResultNameLocal(validateString(nameLocal));
+    };
+
+    const handleFirstLastnameChange = (event) => {
+        setFirstLastnameLocal(event.target.value);
+        setResultFirstLastnameLocal(validateString(firstLastnameLocal));
+    };
+
+    const handleEmailChange = (event) => {
+        setEmailLocal(event.target.value);
+        setResultEmailLocal(validateEmail(emailLocal));
+    };
+
+    const handleUsernameChange = (event) => {
+        setUsernameLocal(event.target.value);
+        context.setGlobalUsername(event.target.value);
+        setResultUsernameLocal(validateUsername(usernameLocal));
+    };
+
+    const [showEye, setShowEye] = useState(false)
+    const handleClick = () => setShowEye(!showEye)
+
+    const handlePasswordChange = (event) => {
+        setPasswordLocal(event.target.value);
+        setResultPasswordLocal(validatePassword(passwordLocal));
+    };
+
+    const resultValidationBotton = allElementsTrue([
+        resultNameLocal.isValid,
+        resultFirstLastnameLocal.isValid,
+        resultEmailLocal.isValid,
+        resultUsernameLocal.isValid,
+        resultPasswordLocal.isValid
+    ])
 
     const CreateUser = () => {
 
@@ -39,61 +81,25 @@ function Singup() {
             body: JSON.stringify(
                 {
                     'username': context.globalUsername,
-                    'password': password,
-                    'email': email,
-                    'name': name,
-                    'first_lastname': firstLastname
+                    'password': passwordLocal,
+                    'email': emailLocal,
+                    'name': nameLocal,
+                    'first_lastname': firstLastnameLocal
                 }
             )
         };
 
         context.setAuthenticated(true)
-        context.setIsOpen(true)
+        context.setIsOpenAlertForm(true)
 
-        fetch('http://localhost:3000/dev/user', requestOptions)
+        // const URL = 'https://10h1dcdbp7.execute-api.us-east-1.amazonaws.com/dev/user';
+        const URL = 'http://localhost:3020/dev/user';
+        fetch(URL, requestOptions)
             .then(response => response.json())
             .then(data => {
-                context.setDataSingup(data)
+                context.setSingupApiResponse(data)
             });
-
     }
-
-    const handleNameChange = (event) => {
-        setName(event.target.value);
-        setResultName(validateString(name));
-    };
-
-    const handleFirstLastnameChange = (event) => {
-        setFirstLastname(event.target.value);
-        setResultFirstLastname(validateString(firstLastname));
-    };
-
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value);
-        setResultEmail(validateEmail(email));
-    };
-
-    const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
-        context.setGlobalUsername(event.target.value);
-        setResultUsername(validateUsername(username));
-    };
-
-    const [show, setShow] = useState(false)
-    const handleClick = () => setShow(!show)
-
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-        setResultPassword(validatePassword(password));
-    };
-
-    const resultValidationBotton = allElementsTrue([
-        resultName.isValid,
-        resultFirstLastname.isValid,
-        resultEmail.isValid,
-        resultUsername.isValid,
-        resultPassword.isValid
-    ])
 
     return (
         <Layout>
@@ -105,48 +111,38 @@ function Singup() {
                         <h1 className='singup-title'>Crear cuenta</h1>
 
                         <FormControl
-                            isRequired
-                            className='FormControl'
+                            isRequired className='FormControl'
                         >
-                            <FormLabel className='FormLabelSingup'>
-                                Nombres
-                            </FormLabel>
+                            <FormLabel className='FormLabelSingup'>Nombre</FormLabel>
                             <Input
                                 type='text'
                                 name='name'
-                                placeholder='Enter your name.'
+                                placeholder=' Escribe tu nombre.'
                                 className='InputSingup'
                                 onChange={handleNameChange}
                             />
                             {
-                                !resultName.isValid ? (
-                                    <span>{resultName.error}</span>
-                                ) : (
-                                    <span></span>
-                                )
+                                !resultNameLocal.isValid ? (
+                                    <span>{resultNameLocal.error}</span>
+                                ) : (null)
                             }
                         </FormControl>
 
                         <FormControl
-                            isRequired
-                            className='FormControl'
+                            isRequired className='FormControl'
                         >
-                            <FormLabel className='FormLabelSingup' >
-                                Primer apellido
-                            </FormLabel>
+                            <FormLabel className='FormLabelSingup'>Primer apellido</FormLabel>
                             <Input
                                 type='text'
                                 name='first_lastname'
-                                placeholder='Enter your first lastname.'
+                                placeholder='Escribe tu primer apellido.'
                                 className='InputSingup'
                                 onChange={handleFirstLastnameChange}
                             />
                             {
-                                !resultFirstLastname.isValid ? (
-                                    <span>{resultFirstLastname.error}</span>
-                                ) : (
-                                    <span></span>
-                                )
+                                !resultFirstLastnameLocal.isValid ? (
+                                    <span>{resultFirstLastnameLocal.error}</span>
+                                ) : (null)
                             }
                         </FormControl>
 
@@ -159,49 +155,39 @@ function Singup() {
                                 type='email'
                                 name='email'
                                 className='InputSingup'
-                                placeholder='Enter your email.'
+                                placeholder='Escribe tu correo electrónico.'
                                 onChange={handleEmailChange}
                             />
                             {
-                                !resultEmail.isValid ? (
-                                    <p>{resultEmail.error}</p>
-                                ) : (
-                                    <span></span>
-                                )
+                                !resultEmailLocal.isValid ? (
+                                    <p>{resultEmailLocal.error}</p>
+                                ) : (null)
                             }
                         </FormControl>
 
                         <FormControl
-                            isRequired
-                            className='FormControl'
+                            isRequired className='FormControl'
                         >
-                            <FormLabel className='FormLabelSingup' >
-                                Username
-                            </FormLabel>
+                            <FormLabel className='FormLabelSingup'>Usuario</FormLabel>
                             <Input
                                 type='text'
                                 name='username'
                                 className='InputSingup'
-                                placeholder='Enter your username.'
+                                placeholder='Escribe un usuario.'
                                 onChange={handleUsernameChange}
                             />
                             {
-                                !resultUsername.isValid ? (
-                                    <p>{resultUsername.error}</p>
-                                ) : (
-                                    <span></span>
-                                )
+                                !resultUsernameLocal.isValid ? (
+                                    <p>{resultUsernameLocal.error}</p>
+                                ) : (null)
                             }
                         </FormControl>
 
                         <FormControl className='FormControl'>
-                            <FormLabel className='FormLabelSingup'>
-                                Contraseña
-                            </FormLabel>
-                            {/* <PasswordInput /> */}
+                            <FormLabel className='FormLabelSingup'>Contraseña</FormLabel>
                             <InputGroup size='md'>
                                 <Input
-                                    type={show ? 'text' : 'password'}
+                                    type={showEye ? 'text' : 'password'}
                                     className='InputSingup'
                                     placeholder='Enter password'
                                     onChange={handlePasswordChange}
@@ -209,7 +195,7 @@ function Singup() {
                                 <InputRightElement className='InputRightElement'>
                                     <Button h='1.75rem' size='sm' onClick={handleClick}>
                                         {
-                                            show ?
+                                            showEye ?
                                                 <EyeIcon className='EyeSlashIcon'></EyeIcon>
                                             :
                                                 <EyeSlashIcon className='EyeSlashIcon'></EyeSlashIcon>
@@ -218,18 +204,16 @@ function Singup() {
                                 </InputRightElement>
                             </InputGroup>
                             {
-                                !resultPassword.isValid ? (
-                                    <p>{resultPassword.error}</p>
-                                ) : (
-                                    <span></span>
-                                )
+                                !resultPasswordLocal.isValid ? (
+                                    <p>{resultPasswordLocal.error}</p>
+                                ) : (null)
                             }
                         </FormControl>
 
                         <FormControl className='FormControl FormControl-Cel-Singup'>
                             <Button
-                                className='ButtonControlSingup'
                                 type='submit'
+                                className='ButtonControlSingup'
                                 onClick={() => {CreateUser();}}
                                 isLoading={!resultValidationBotton}
                                 loadingText='LLena todos los campos'
@@ -239,7 +223,7 @@ function Singup() {
                                 Crear cuenta
                             </Button>
                             <h3 className='singup-login-question'>
-                                ¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a>
+                                ¿Ya tienes una cuenta? <NavLink to='/login'>Inicia sesión</NavLink>
                             </h3>
                         </FormControl>
                     </div>
@@ -248,4 +232,4 @@ function Singup() {
     )
 }
 
-export default Singup
+export default Singup;
