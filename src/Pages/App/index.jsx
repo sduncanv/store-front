@@ -7,6 +7,9 @@ import Login from '../Login'
 import Singup from '../Singup'
 import Profile from '../Profile'
 import CreateProduct from '../CreateProduct'
+import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
+import React, { useState, useContext } from 'react';
+import { StoreContext } from '../../Context'
 
 // const AppRoutes = () => {
 //     let routes = useRoutes([
@@ -57,6 +60,7 @@ const App = () => {
                             </AuthRoute>
                         } />
                     </Routes>
+                    <CheckoutSideMenu />
                     <Footer />
                 </StoreProvider>
             </HashRouter>

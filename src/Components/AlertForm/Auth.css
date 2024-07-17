@@ -7,18 +7,12 @@
     --blue-level-2: #0079d4;
     --cian-color: #0fffff;
     --back-input-color: rgba(4, 4, 4, .1);
-
     --freeman-font: "Freeman", sans-serif;
     --mulish-font: "Mulish", sans-serif;
 }
 
 .auth-main {
     width: 100%;
-    /*
-    height: 750px;
-    width: 50%;
-    padding: 15px;
-    */
     padding: 20px;
     overflow-y: auto;
     display: flex;
@@ -65,17 +59,18 @@
     cursor: default;
 }
 
-/* .FormHelperText {
+/*
+.FormHelperText {
     width: 100%;
     height: 1.5rem;
     padding: 10px;
-} */
+}
 
-/* .InputRightElement {
+.InputRightElement {
     padding: 5px;
-} */
+}
 
-/* .InputRightElement button {
+.InputRightElement button {
     padding: 0 5px;
     border: none;
     background-color: transparent;
@@ -89,16 +84,14 @@
     width: 50%;
     height: 45px;
     border-color: var(--blue-level-1);
-    /*
-    border: none;
-    */
     border-radius: 5px;
     color: var(--blue-level-1);
     cursor: pointer;
     font-size: 20px;
 }
 
-/* .singup-login-question {
+/*
+.singup-login-question {
     padding-top: 10px;
     font-family: var(--mulish-font);
     font-weight: 500;
@@ -110,7 +103,8 @@
     text-decoration: none;
     color: var(--blue-level-1);
     font-size: 15px;
-} */
+}
+*/
 
 @media (max-width: 600px) {
     .auth-main {

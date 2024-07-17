@@ -12,9 +12,9 @@ import {
     allElementsTrue
 } from '../../Utils/index'
 import './Singup.css'
+import {crearUsuario} from '../../Utils/data'
 
 function Singup() {
-
     const context = useContext(StoreContext);
 
     if (context.userData) {
@@ -89,16 +89,18 @@ function Singup() {
             )
         };
 
-        context.setAuthenticated(true)
-        context.setIsOpenAlertForm(true)
+        context.setAuthenticated(true);
+        context.setIsOpenAlertForm(true);
+
+        context.setSingupApiResponse(crearUsuario); // -----> borrar
 
         // const URL = 'https://10h1dcdbp7.execute-api.us-east-1.amazonaws.com/dev/user';
-        const URL = 'http://localhost:3020/dev/user';
-        fetch(URL, requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                context.setSingupApiResponse(data)
-            });
+        // const URL = 'http://localhost:3020/dev/user';
+        // fetch(URL, requestOptions)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         context.setSingupApiResponse(data)
+        //     });
     }
 
     return (
@@ -232,4 +234,4 @@ function Singup() {
     )
 }
 
-export default Singup;
+export default Singup

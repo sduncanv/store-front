@@ -1,0 +1,46 @@
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%;
+}
+
+.profile-header figure {
+    padding: 0 15px 0 0;
+}
+
+.profile-header figure img {
+    width: 200px;
+    height: 200px;
+}
+
+.profile-header h1 {
+    padding: 0 10px;
+}
+
+@media (max-width: 1023px) {
+    .profile-header figure img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-header h1 {
+        padding: 0 8px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .profile-header figure img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .profile-header h1 {
+        padding: 0 8px;
+        font-size: 20px;
+    }
+}

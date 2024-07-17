@@ -4,9 +4,9 @@ import { StoreContext } from '../../Context'
 import {
     Input, Button, FormControl, FormLabel, Select, Textarea
 } from '@chakra-ui/react'
-// import UploadImage from '../../Components/UploadImage'
 import Layout from '../../Components/Layout'
 import './CreateProduct.css'
+import { crearProducto } from '../../Utils/data'
 
 const CreateProduct = () => {
 
@@ -65,16 +65,19 @@ const CreateProduct = () => {
             )
         };
 
-        const URL = 'http://localhost:3030/dev/products';
-        fetch(URL, requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                context.setResultAPICreateProduct(data);
+        context.setResultAPICreateProduct(crearProducto); // -----> borrar
+        navigate('/perfil'); // -----> borrar
 
-                if (data.statusCode == 201) {
-                    navigate('/perfil');
-                }
-            });
+        // const URL = 'http://localhost:3030/dev/products';
+        // fetch(URL, requestOptions)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         context.setResultAPICreateProduct(data);
+
+        //         if (data.statusCode == 200) {
+        //             navigate('/perfil');
+        //         }
+        //     });
     }
 
     return (
@@ -148,4 +151,4 @@ const CreateProduct = () => {
     )
 }
 
-export default CreateProduct;
+export default CreateProduct

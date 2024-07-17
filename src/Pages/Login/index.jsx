@@ -1,17 +1,22 @@
 import { useState, useContext } from 'react'
-import { useNavigate, NavLink } from 'react-router-dom'
+import { useNavigate, NavLink, Navigate } from 'react-router-dom'
 import { EyeSlashIcon, EyeIcon } from '@heroicons/react/24/solid'
 import {
     FormControl, FormLabel, Input, Button, InputGroup, InputRightElement
 } from '@chakra-ui/react'
 import { StoreContext } from '../../Context'
 import Layout from '../../Components/Layout'
+import { logindata } from '../../Utils/data'
 import './Login.css'
 
 function Login() {
 
     const context = useContext(StoreContext)
     const navigate = useNavigate();
+
+    if (context.userData) {
+        return <Navigate to='/' />
+    };
 
     const [usernameLocal, setUsernameLocal] = useState('');
     const [passwordLocal, setPasswordLocal] = useState('');
@@ -31,20 +36,22 @@ function Login() {
             )
         };
 
+        context.setLoginApiResponse(logindata); // -----> borrar
+        navigate('/'); // -----> borrar
+
         // const URL = 'https://10h1dcdbp7.execute-api.us-east-1.amazonaws.com/dev/login';
-        const URL = 'http://localhost:3020/dev/login';
+        // const URL = 'http://localhost:3020/dev/login';
+        // fetch(URL, requestOptions)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         context.setLoginApiResponse(data);
 
-        fetch(URL, requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                context.setLoginApiResponse(data);
-
-                if (data.statusCode == 200) {
-                    navigate('/');
-                } else {
-                    setIsErrorInLogin(true);
-                };
-            });
+        //         if (data.statusCode == 200) {
+        //             navigate('/');
+        //         } else {
+        //             setIsErrorInLogin(true);
+        //         };
+        //     });
     };
 
     const handleUsernameChange = (event) => {

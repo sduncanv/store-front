@@ -1,0 +1,51 @@
+.buttonCreate {
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.product-main-profile {
+    width: 100%;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.my-product {
+    padding: 20px 0 0 0;
+}
+
+.buttons-profile {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (max-width: 1023px) {
+    .product-main-profile {
+        grid-template-columns: repeat(2, minmax(150px, 1fr));
+    }
+
+    .my-product {
+        font-size: 18px;
+    }
+
+    
+}
+
+@media (max-width: 600px) {
+    .product-main-profile {
+      grid-template-columns: repeat(1, minmax(150px, 1fr));
+    }
+
+    .my-product {
+        font-size: 18px;
+    }
+}

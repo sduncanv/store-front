@@ -1,10 +1,13 @@
 import { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
+// import { NavLink, Link } from 'react-router-dom'
 import { StoreContext } from '../../Context'
 import Layout from '../../Components/Layout'
 import Product from '../../Components/Product'
 import HomeCover from '../../Components/HomeCover'
 import './Home.css'
+// import {
+//     Input, Button, FormControl, FormLabel, Select, Textarea
+// } from '@chakra-ui/react'
 
 function Home() {
 
@@ -37,9 +40,17 @@ function Home() {
     return (
         <Layout>
             <HomeCover />
-            <li className='navbar-li-2 new_product'>
-                <NavLink to='/crear-producto'>Crear</NavLink>
-            </li>
+            {/* <NavLink to='/crear-producto'>
+                <Button
+                    size='md'
+                    height='48px'
+                    width='200px'
+                    border='2px'
+                    borderColor='green.500'
+                >
+                    Crear producto
+                </Button>
+            </NavLink> */}
             <div className='product-main'>
                 {renderView()}
             </div>

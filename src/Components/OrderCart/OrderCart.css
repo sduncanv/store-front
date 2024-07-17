@@ -1,0 +1,84 @@
+.xmark-icon-ordercart {
+    width: 1.5rem; 
+    height: 1.5rem; 
+    color: #000000; 
+    cursor: pointer; 
+}
+
+.main-order-cart {
+    display: flex; 
+    margin-bottom: 0.75rem; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.img-product {
+    display: flex; 
+    gap: 0.5rem; 
+    align-items: center; 
+}
+
+.img-product figure {
+    width: 5rem; 
+    height: 5rem; 
+}
+
+.img-product figure img {
+    border-radius: 0.5rem; 
+    width: 100%;
+}
+
+/* .img-product p {
+    font-size: 0.875rem;
+    line-height: 1.25rem; 
+    font-weight: 300; 
+} */
+
+.info-product {
+    display: flex; 
+    gap: 0.5rem; 
+    align-items: center; 
+}
+
+.info-product p {
+    font-size: 1.125rem;
+    line-height: 1.75rem; 
+    font-weight: 500; 
+}
+
+/* @media (max-width: 1023px) {} */
+
+@media (max-width: 600px) {
+    /* .img-product {
+        display: flex; 
+        gap: 0.5rem; 
+        align-items: center; 
+    } */
+    
+    .img-product figure {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .img-product figure img {
+        width: 90%;
+    }
+
+    /* .img-product p {
+        font-size: 10px;
+    }
+
+    */
+
+    .info-product {
+        flex-direction: column;
+        align-items: start;
+
+        padding: 5px;
+    }
+
+    .info-product p {
+        font-size: 12px;
+        line-height: 1.2;
+    }
+}

@@ -1,0 +1,98 @@
+.checkout-side-menu {
+    width: 360px;
+    height: calc(100vh - 120px);
+    top: 120px;
+    background-color: white;
+    position: fixed; 
+    right: 0; 
+    flex-direction: column; 
+    border-radius: 0.5rem; 
+    border-width: 1px; 
+    border-color: #000000;
+    margin-top: 5px;
+}
+
+.title-checkout-menu {
+    display: flex; 
+    padding: 1.5rem; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.title-checkout-menu h2 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 500;
+}
+
+.xmark-icon {
+    width: 1.5rem; 
+    height: 1.5rem; 
+    color: #000000; 
+    cursor: pointer; 
+}
+
+.elements {
+    overflow-y: scroll; 
+    padding-left: 1.5rem;
+    padding-right: 1.5rem; 
+    flex: 1 1 0%;
+    width: 360px;
+    height: calc(100% - 160px);
+}
+
+.price-product {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem; 
+    margin-bottom: 1.5rem;    
+}
+
+.price-product p {
+    display: flex; 
+    margin-bottom: 0.5rem; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.price-product button {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem; 
+    border-radius: 0.5rem; 
+    width: 100%; 
+    color: #ffffff; 
+    background-color: #000000; 
+}
+
+/* @media (max-width: 1023px) {} */
+
+@media (max-width: 600px) {
+    .checkout-side-menu {
+        width: 200px;
+        height: calc(100vh - 75px);
+        top: 65px;
+        position: fixed; 
+        right: 0; 
+        flex-direction: column;
+
+        border: solid;
+        border-width: 1px;
+        right: 3px;
+    }
+
+    .title-checkout-menu {
+        padding: 1rem;
+    }
+
+    .elements {
+        padding-left: .5rem;
+        padding-right: .5rem;
+        width: 200px;
+        height: calc(100% - 160px);
+    }
+
+    .price-product {
+        padding-left: .5rem;
+        padding-right: .5rem; 
+        margin-bottom: .5rem;    
+    }
+}

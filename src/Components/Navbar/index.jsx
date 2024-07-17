@@ -9,8 +9,17 @@ const Navbar = () => {
     const context = useContext(StoreContext)
 
     const handleClickLogout = () => {
-        context.setUserData(null);
+        context.setGlobalUsername('');
         context.setLoginApiResponse({});
+        context.setCodeAuthEmail('');
+        context.setResultApiCodeAuth({});
+        context.setUserData(null);
+        context.setSingupApiResponse(null);
+        context.setResultAPICreateProduct({});
+        context.setUserData(null);
+        context.setProductsUser({});
+        context.setAuthenticated(false);
+        localStorage.clear();
     }
 
     const location = useLocation();
@@ -30,7 +39,7 @@ const Navbar = () => {
 
             <ul className='navbar-ul'>
                 <li className='navbar-li'>
-                    <h1>Store</h1>
+                    <NavLink className='other-li' to='/'><h1 className='logo'>Store</h1></NavLink>
                 </li>
                 <li className='navbar-li navbar-search'>
                     <div className='navbar-li-div'>
@@ -50,7 +59,7 @@ const Navbar = () => {
                     context.userData ? (null) : (
                         showLogin && (
                             <li className='navbar-li-2'>
-                                <NavLink to='/login'>Login</NavLink>
+                                <NavLink to='/login'>Ingresar</NavLink>
                             </li>
                         )
                     )
@@ -81,10 +90,10 @@ const Navbar = () => {
                     ) : (null)
                 } */}
 
-                {/* <li className='navbar-li-2 li-cart-icon'>
+                <li className='navbar-li-2 li-cart-icon'>
                     <ShoppingBagIcon className='product-cart-icon'></ShoppingBagIcon>
-                    <div className='navbar-cart'>{context.count}</div>
-                </li> */}
+                    <div className='navbar-cart'>{context.cartProducts.length}</div>
+                </li>
 
                 {
                     context.userData ? (
@@ -99,7 +108,6 @@ const Navbar = () => {
                     ) : (null)
                 }
             </ul>
-
         </nav>
     )
 }

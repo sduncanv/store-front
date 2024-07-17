@@ -23,12 +23,12 @@ const props = {
         }
     },
 
-};
+}
 
 const UploadImage = () => (
   <Upload {...props}>
     <Button icon={<UploadOutlined />}>Click para subir imagen</Button>
   </Upload>
-);
+)
 
-export default UploadImage;
+export default UploadImage

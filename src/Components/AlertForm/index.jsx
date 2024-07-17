@@ -7,7 +7,7 @@ import {
 } from '@chakra-ui/react'
 import { StoreContext } from '../../Context'
 import './Auth.css'
-
+import { autenticarUsuario } from '../../Utils/data'
 
 function AlertForm() {
 
@@ -28,22 +28,23 @@ function AlertForm() {
             )
         };
 
+        context.setResultApiCodeAuth(autenticarUsuario); // -----> borrar
+        navigate('/'); // -----> borrar
+
         // const URL = 'https://10h1dcdbp7.execute-api.us-east-1.amazonaws.com/dev/authenticate_user';
-        const URL = 'http://localhost:3020/dev/authenticate_user';
-        fetch(URL, requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                context.setResultApiCodeAuth(data)
+        // const URL = 'http://localhost:3020/dev/authenticate_user';
+        // fetch(URL, requestOptions)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         context.setResultApiCodeAuth(data)
 
-                if (data.statusCode == 200) {
-                    navigate('/');
-                }
-            });
+        //         if (data.statusCode == 200) {
+        //             navigate('/')
+        //         }
+        //     });
     }
 
-    const handleClickButtonAuth = () => {
-        context.setIsOpenAlertForm(false)
-    }
+    const handleClickButtonAuth = () => {context.setIsOpenAlertForm(false)}
 
     return (
         <ChakraProvider>
@@ -55,9 +56,13 @@ function AlertForm() {
             >
                 <AlertDialogOverlay />
                 {
-                    context.resultApiCodeAuth.statusCode != 200 && context.resultApiCodeAuth.statusCode != 0 ? (
+                    context.resultApiCodeAuth?.statusCode != 200 && context.resultApiCodeAuth?.statusCode != null ? (
 
-                        <AlertDialogContent>
+                        <AlertDialogContent
+                            className='Poooooooo'
+                            height='300px'
+                            width='90%'
+                        >
                             <AlertDialogHeader>
                                 <h1 className='auth-title'>Autenticar cuenta</h1>
                             </AlertDialogHeader>
@@ -86,7 +91,7 @@ function AlertForm() {
                             <AlertDialogBody>
                                 <div className='auth-main'>
                                     <FormControl className='FormControlAuth' isRequired>
-                                        <FormLabel className='FormLabelAuth' >Código</FormLabel>
+                                        <FormLabel className='FormLabelAuth'>Código</FormLabel>
                                         <Input
                                             placeholder='Ingresa el código.'
                                             className='InputAuth'
