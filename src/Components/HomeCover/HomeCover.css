@@ -5,7 +5,8 @@
 }
 
 .home-cover-main div {
-    background-image: url(../../../imga.webp);
+    /* background-image: url(../../../imga.webp); */
+    background-image: url(https://res.cloudinary.com/dntqwynta/image/upload/portada-store);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
