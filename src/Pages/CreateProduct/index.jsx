@@ -6,12 +6,11 @@ import {
 } from '@chakra-ui/react'
 import Layout from '../../Components/Layout'
 import './CreateProduct.css'
-import { crearProducto } from '../../Utils/data'
+import { getDate } from '../../Utils/index'
 
 const CreateProduct = () => {
 
     const context = useContext(StoreContext)
-    const [fileame, setFilename] = useState(null)
     const navigate = useNavigate()
 
     const renderTypeProducts = () => {
@@ -31,13 +30,11 @@ const CreateProduct = () => {
     const handleFileChange = (event) => {
 
         const file = event.target.files[0];
-        const filename = event.target.value;
 
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
                 const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
-                setFilename(filename);
                 context.setImgProductToCreate(base64String);
             };
             reader.readAsDataURL(file);
@@ -45,6 +42,9 @@ const CreateProduct = () => {
     };
 
     const CreateProductApi = () => {
+
+        const date = getDate();
+        const filename = `user_${context.userData?.user_id}-date_${date.formattedDate}`;
 
         const requestOptions = {
             method: 'POST',
@@ -58,7 +58,7 @@ const CreateProduct = () => {
                     'user_id': context.userData?.user_id,
                     'username': context.globalUsername,
                     'file': {
-                        'filename': fileame,
+                        'filename': filename,
                         'image': context.imgProductToCreate,
                     }
                 }
@@ -111,7 +111,7 @@ const CreateProduct = () => {
                     <FormLabel className='FormLabelSingup'>Categoría del producto</FormLabel>
                     <Select
                         className='select-type-product'
-                        // placeholder='Categoría del producto'
+                        placeholder='Categoría del producto'
                         onChange={(event) => context.setTypeProductToCreate(event.target.value)}
                     >
                         {renderTypeProducts()}

@@ -16,7 +16,7 @@ export const StoreProvider = ({children}) => {
         const savedUser = localStorage.getItem('loginApiResponse');
         return savedUser ? JSON.parse(savedUser) : null;
     });
-    
+
     useEffect(() => {
         localStorage.setItem('loginApiResponse', JSON.stringify(loginApiResponse));
     }, [loginApiResponse]);
@@ -30,7 +30,7 @@ export const StoreProvider = ({children}) => {
     // const [allProducts, setAllProducts] = useState([]);
     const [allProducts, setAllProducts] = useState(all_products.data); // -----> borrar
 
-    const URL_ALL_PRODUCTS = 'http://localhost:3030/dev/products';
+    // const URL_ALL_PRODUCTS = 'http://localhost:3030/dev/products';
     // useEffect(() => {
     //     fetch(URL_ALL_PRODUCTS)
     //     .then(response => response.json())
@@ -74,8 +74,8 @@ export const StoreProvider = ({children}) => {
     // const [userData, setUserData] = useState(null);
     // --------------------------------------------
     const [userData, setUserData] = useState(() => {
-        const savedUser = localStorage.getItem('userData');
-        return savedUser ? JSON.parse(savedUser) : null;
+        const savedDataUser = localStorage.getItem('userData');
+        return savedDataUser ? JSON.parse(savedDataUser) : null;
     });
 
     useEffect(() => {
