@@ -12,8 +12,15 @@ const Product = (data) => {
         context.setCount(context.count + 1);
         context.setCartProducts([...context.cartProducts, productData]);
 
-        context.openCheckoutSideMenu();
+        // context.openCheckoutSideMenu();
         // context.closeProductDetail();
+    }
+
+    const removeProductToCart = (event, productData) => {
+        event.stopPropagation();
+        context.setCount(context.count - 1);
+        const filteredProducts = context.cartProducts.filter(product => product.product_id != productData.product_id);
+        context.setCartProducts(filteredProducts);
     }
 
     const renderIcon = (product_id) => {
@@ -21,7 +28,10 @@ const Product = (data) => {
 
         if (isInCart) {
             return (
-                <div className='product-add-cart'>
+                <div
+                    className='product-add-cart'
+                    onClick={(event) => removeProductToCart(event, data.data)}
+                >
                     <CheckIcon className='product-add-icon'></CheckIcon>
                 </div>
             )
