@@ -43,7 +43,7 @@ const Navbar = () => {
 
             <ul className='navbar-ul'>
                 <li className='navbar-li'>
-                    <NavLink className='other-li' to='/'><h1 className='logo'>Store.</h1></NavLink>
+                    <NavLink className='other-li' to='/'><h1 className='logo'>Store</h1></NavLink>
                 </li>
                 <li className='navbar-li navbar-search'>
                     <div className='navbar-li-div'>

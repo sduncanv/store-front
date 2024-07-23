@@ -120,7 +120,7 @@
     }
 
     .product-detail-main {
-        height: 200px;
+        height: 220px;
     }
 
     .product-detail-main figure img {
@@ -138,8 +138,7 @@
     .product-data span {
         width: 45%;
         font-size: 10px;
-        /* font-weight: 550; */
-        line-height: 20px;
+        line-height: 10px;
     }
 
     .product-data div {
