@@ -64,7 +64,7 @@ export const all_products = {
         {
             "product_id": 74,
             "name": "NOMBRE DE PRODUCTO PRUEBA 888",
-            "price": 123456789,
+            "price": 1234567,
             "type_product_id": 2,
             "description": "Producto prueba 888.",
             "user_id": 1,

@@ -54,6 +54,7 @@ const Product = (data) => {
         style: 'decimal',
         minimumFractionDigits: 0,
     });
+    const price_com = `$ ${formattedPrice}`
 
     return (
         <div className='product-detail-main'>
@@ -69,7 +70,7 @@ const Product = (data) => {
                 <div>
                     {/* <p className='product-price'>$ {data.data.price}</p> */}
                     {/* <p>{data.data.created_at}</p> */}
-                    <p className='product-price'>$ {formattedPrice}</p>
+                    <p className='product-price'>{price_com}</p>
                     <p>{data.data.product_type_name}</p>
                 </div>
             </div>

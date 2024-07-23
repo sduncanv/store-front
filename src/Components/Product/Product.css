@@ -147,6 +147,7 @@
 
     .product-price {
         font-size: 10px;
+        line-height: 10px;
     }
 
     .product-data div p {
