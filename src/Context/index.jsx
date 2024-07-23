@@ -75,7 +75,7 @@ export const StoreProvider = ({children}) => {
     // --------------------------------------------
     const [userData, setUserData] = useState(() => {
         const savedDataUser = localStorage.getItem('userData');
-        return savedDataUser ? JSON.parse(savedDataUser) : null;
+        return savedDataUser ? JSON.parse(savedDataUser) : {};
     });
 
     useEffect(() => {
