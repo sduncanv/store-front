@@ -29,6 +29,12 @@ const CheckoutSideMenu = () => {
         return null;
     }
 
+    const price = Number(totalPrice(context.cartProducts));
+    const formattedPrice = price.toLocaleString('es-CO', {
+        style: 'decimal',
+        minimumFractionDigits: 0,
+    });
+
     return (
         <aside
             className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu `}
@@ -58,7 +64,8 @@ const CheckoutSideMenu = () => {
             <div className='price-product'>
                 <p>
                     <span className='font-light'>Total:</span>
-                    <span className='font-medium text-2xl'>${totalPrice(context.cartProducts)}</span>
+                    {/* <span className='font-medium text-2xl'>${totalPrice(context.cartProducts)}</span> */}
+                    <span className='font-medium text-2xl'>${formattedPrice}</span>
                 </p>
                 {/* <Link to='/my-orders/last'>
                     <button

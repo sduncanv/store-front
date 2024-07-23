@@ -149,7 +149,7 @@
     }
 
     .navbar-li-2 {
-        font-size: 16px;
+        font-size: 10px;
         padding: 0 2.5px;
     }
 
@@ -167,5 +167,6 @@
 
     .navbar-cart {
         font-size: 16px;
+        padding: 0 0 0 3px;
     }
 }

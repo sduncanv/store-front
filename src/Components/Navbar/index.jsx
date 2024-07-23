@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import { ShoppingBagIcon, ArrowRightStartOnRectangleIcon } from '@heroicons/react/24/solid'
+import { ShoppingBagIcon, ArrowRightStartOnRectangleIcon, ShoppingCartIcon } from '@heroicons/react/24/solid'
 import { StoreContext } from '../../Context'
 import './Navbar.css'
 
@@ -20,6 +20,10 @@ const Navbar = () => {
         context.setProductsUser({});
         context.setAuthenticated(false);
         localStorage.clear();
+    }
+
+    const handleClickCart = () => {
+        context.openCheckoutSideMenu();
     }
 
     const location = useLocation();
@@ -91,7 +95,11 @@ const Navbar = () => {
                 } */}
 
                 <li className='navbar-li-2 li-cart-icon'>
-                    <ShoppingBagIcon className='product-cart-icon'></ShoppingBagIcon>
+                    {/* <ShoppingBagIcon className='product-cart-icon'></ShoppingBagIcon> */}
+                    <ShoppingCartIcon
+                        onClick={handleClickCart}
+                        className='product-cart-icon'
+                    ></ShoppingCartIcon>
                     <div className='navbar-cart'>{context.cartProducts.length}</div>
                 </li>
 
