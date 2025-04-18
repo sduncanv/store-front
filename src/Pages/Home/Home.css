@@ -1,14 +1,21 @@
 .product-main {
     width: 100%;
-    padding: 10px;
+    padding: 20px;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 15px;
+    gap: 30px;
+    background-color: aqua;
 }
 
 @media (max-width: 1023px) {
     .product-main {
         grid-template-columns: repeat(2, minmax(150px, 1fr));
+        gap: 15px;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 }
 

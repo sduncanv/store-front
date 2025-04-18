@@ -39,7 +39,7 @@ function Home() {
 
     return (
         <Layout>
-            <HomeCover />
+            {/* <HomeCover /> */}
             {/* <NavLink to='/crear-producto'>
                 <Button
                     size='md'

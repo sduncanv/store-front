@@ -39,9 +39,18 @@ const Navbar = () => {
     }
 
     return (
-        <nav className='navbar-main'>
+        <nav className='navbar'>
 
-            <ul className='navbar-ul'>
+            <div className="navbar-logo">
+                <a href="">Store</a>
+            </div>
+
+            {/* <div className="navbar-menu">
+                <a href="">Projects</a>
+                <a href="">Skills</a>
+            </div> */}
+
+            {/* <ul className='navbar-ul'>
                 <li className='navbar-li'>
                     <NavLink className='other-li' to='/'><h1 className='logo'>Store</h1></NavLink>
                 </li>
@@ -56,9 +65,9 @@ const Navbar = () => {
                         <button className='navbar-input-botton'>🔍</button>
                     </div>
                 </li>
-            </ul>
+            </ul> */}
 
-            <ul className='navbar-ul'>
+            {/* <ul className='navbar-ul'>
                 {
                     context.userData ? (null) : (
                         showLogin && (
@@ -86,16 +95,16 @@ const Navbar = () => {
                         </li>
                     ) : (null)
                 }
-                {/* {
+                {
                     context.userData ? (
                         <li className='navbar-li-2 new_product'>
                             <NavLink to='/crear-producto'>Crear</NavLink>
                         </li>
                     ) : (null)
-                } */}
+                }
 
                 <li className='navbar-li-2 li-cart-icon'>
-                    {/* <ShoppingBagIcon className='product-cart-icon'></ShoppingBagIcon> */}
+                    
                     <ShoppingCartIcon
                         onClick={handleClickCart}
                         className='product-cart-icon'
@@ -115,7 +124,7 @@ const Navbar = () => {
                         </li>
                     ) : (null)
                 }
-            </ul>
+            </ul> */}
         </nav>
     )
 }

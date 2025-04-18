@@ -42,25 +42,25 @@ const App = () => {
                     <Navbar />
                     <Routes>
                         <Route path='/' element={<Home />} />
-                        <Route path='/login' element={<Login />} />
+                        {/* <Route path='/login' element={<Login />} />
 
-                        <Route path='/singup' element={<Singup />} />
+                        <Route path='/singup' element={<Singup />} /> */}
 
-                        <Route path='/crear-producto' element={
+                        {/* <Route path='/crear-producto' element={
                             <AuthRoute>
                                 <CreateProduct />
                             </AuthRoute>
-                        } />
+                        } /> */}
 
                         {/* <Route path='/perfil' element={<Profile />} /> */}
-                        <Route path='/perfil' element={
+                        {/* <Route path='/perfil' element={
                             <AuthRoute>
                                 <Profile />
                             </AuthRoute>
-                        } />
+                        } /> */}
                     </Routes>
-                    <CheckoutSideMenu />
-                    <Footer />
+                    {/* <CheckoutSideMenu /> */}
+                    {/* <Footer /> */}
                 </StoreProvider>
             </HashRouter>
         </>
