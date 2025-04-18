@@ -4,7 +4,7 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 30px;
-    background-color: aqua;
+    /* background-color: aqua; */
 }
 
 @media (max-width: 1023px) {
