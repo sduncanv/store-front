@@ -24,7 +24,7 @@ export const all_products = {
     "data": [
         {
             "product_id": 1,
-            "name": "Iphone",
+            "name": "Hoodie 'Ojo verde' oversize",
             "price": 4000000,
             "type_product_id": 1,
             "description": "Iphone 14 pro max",
@@ -33,7 +33,7 @@ export const all_products = {
             "created_at": "2024-07-18 20:27:34",
             "updated_at": "2024-07-18 20:27:34",
             "url": "https://acdn.mitiendanube.com/stores/002/413/552/products/x001-b8a45680c3a1883c8e169738468713791-2a2b3d0b3f1ac46b5e16973849453376-1024-1024.webp",
-            "product_type_name": "Electronica"
+            "product_type_name": "Hoodie oversize con estampado de ojo verde"
         },
         {
             "product_id": 2,

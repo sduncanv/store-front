@@ -66,7 +66,7 @@ const Product = (data) => {
                 <span>{data.data.name}</span>
                 <div>
                     <p className='product-price'>{price_com}</p>
-                    <p>{data.data.product_type_name}</p>
+                    <p className='product-description'>{data.data.product_type_name}</p>
                 </div>
             </div>
         </div>
