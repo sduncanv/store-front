@@ -1,6 +1,9 @@
 import { useContext } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import { ShoppingBagIcon, ArrowRightStartOnRectangleIcon, ShoppingCartIcon } from '@heroicons/react/24/solid'
+import { 
+    ShoppingBagIcon, ArrowRightStartOnRectangleIcon,
+    ShoppingCartIcon, ArrowRightEndOnRectangleIcon
+} from '@heroicons/react/24/solid'
 import { StoreContext } from '../../Context'
 import './Navbar.css'
 
@@ -45,6 +48,21 @@ const Navbar = () => {
                 <a href="">Store</a>
             </div>
 
+            <div>
+                {/*
+                <a href="/login">
+                <ArrowRightEndOnRectangleIcon
+                onClick={handleClickCart} className='product-cart-icon'
+                ></ArrowRightEndOnRectangleIcon>
+                </a>
+                */}
+                <NavLink to='/login'>
+                    <ArrowRightEndOnRectangleIcon onClick={handleClickLogout}
+                    className='product-cart-icon'
+                    ></ArrowRightEndOnRectangleIcon>
+                </NavLink>
+            </div>
+
             {/* <div className="navbar-menu">
                 <a href="">Projects</a>
                 <a href="">Skills</a>
@@ -67,7 +85,8 @@ const Navbar = () => {
                 </li>
             </ul> */}
 
-            {/* <ul className='navbar-ul'>
+            {/*
+            <ul className='navbar-ul'>
                 {
                     context.userData ? (null) : (
                         showLogin && (
