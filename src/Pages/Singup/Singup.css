@@ -8,6 +8,7 @@
     --cian-color: #0fffff;
     --back-input-color: rgba(4, 4, 4, .1);
 
+    --green-level-1: #2ecc71;
     --freeman-font: "Freeman", sans-serif;
     --mulish-font: "Mulish", sans-serif;
 }
@@ -34,7 +35,7 @@
     font-size: 54px;
     letter-spacing: 1px;
     text-decoration-line: underline;
-    text-decoration-color: var(--blue-level-1);
+    text-decoration-color: var(--green-level-1);
     text-decoration-thickness: 2.5px;
     text-underline-offset: 5px;
 }
@@ -49,7 +50,7 @@
     padding: 10px 0 2px 0;
     font-family: var(--mulish-font);
     font-size: 18px;
-    color: var(--blue-level-1);
+    color: var(--green-level-1);
 }
 
 .InputSingup {
@@ -84,12 +85,12 @@
 .ButtonControlSingup {
     width: 50%;
     height: 45px;
-    border-color: var(--blue-level-1);
+    border-color: var(--green-level-1);
     /*
     border: none;
     */
     border-radius: 5px;
-    color: var(--blue-level-1);
+    color: var(--green-level-1);
     cursor: pointer;
     font-size: 20px;
 }
@@ -104,8 +105,23 @@
 
 .singup-login-question a {
     text-decoration: none;
-    color: var(--blue-level-1);
+    color: var(--green-level-1);
     font-size: 15px;
+}
+
+.singup-code-confirmation {
+    /* border-radius: 5px; */
+    /* border-color: red; */
+    width: 100%;
+    border: solid 0.1px;
+    /* background: aliceblue; */
+    padding: 10px;
+}
+
+@media (max-width: 1023px) {
+    .ButtonControlSingup {
+        width: 100%;
+    }
 }
 
 @media (max-width: 600px) {

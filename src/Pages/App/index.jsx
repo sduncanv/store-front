@@ -8,7 +8,8 @@ import Singup from '../Singup'
 import Profile from '../Profile'
 import CreateProduct from '../CreateProduct'
 import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from 'react'
+import ProductPage from '../ProductPage'
 
 // const AppRoutes = () => {
 //     let routes = useRoutes([
@@ -43,10 +44,10 @@ const App = () => {
                     <Routes>
                         <Route path='/' element={<Home />} />
                         <Route path='/login' element={<Login />} />
-                        {/*
-                        <Route path='/singup' element={<Singup />} /> */}
+                        <Route path='/singup' element={<Singup />} />
+                        <Route path='/product' element={<ProductPage />} />
 
-                        {/* <Route path='/crear-producto' element={
+                        {/* <Route path='/create-product' element={
                             <AuthRoute>
                                 <CreateProduct />
                             </AuthRoute>

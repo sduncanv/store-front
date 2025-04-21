@@ -32,7 +32,7 @@ export const all_products = {
             "active": 1,
             "created_at": "2024-07-18 20:27:34",
             "updated_at": "2024-07-18 20:27:34",
-            "url": "https://acdn.mitiendanube.com/stores/002/413/552/products/x001-b8a45680c3a1883c8e169738468713791-2a2b3d0b3f1ac46b5e16973849453376-1024-1024.webp",
+            "url": "https://cdn-images.farfetch-contents.com/18/90/65/88/18906588_41130828_1000.jpg",
             "product_type_name": "Hoodie oversize con estampado de ojo verde"
         },
         {
@@ -49,7 +49,7 @@ export const all_products = {
             "product_type_name": "Electronica"
         },
         {
-            "product_id": 2,
+            "product_id": 3,
             "name": "Iphone",
             "price": 4000000,
             "type_product_id": 1,
@@ -62,7 +62,7 @@ export const all_products = {
             "product_type_name": "Electronica"
         },
         {
-            "product_id": 2,
+            "product_id": 4,
             "name": "Iphone",
             "price": 4000000,
             "type_product_id": 1,
@@ -75,7 +75,7 @@ export const all_products = {
             "product_type_name": "Electronica"
         },
         {
-            "product_id": 1,
+            "product_id": 5,
             "name": "Iphone",
             "price": 4000000,
             "type_product_id": 1,
@@ -88,7 +88,7 @@ export const all_products = {
             "product_type_name": "Electronica"
         },
         {
-            "product_id": 2,
+            "product_id": 6,
             "name": "Iphone",
             "price": 4000000,
             "type_product_id": 1,
@@ -101,7 +101,7 @@ export const all_products = {
             "product_type_name": "Electronica"
         },
         {
-            "product_id": 2,
+            "product_id": 7,
             "name": "Iphone",
             "price": 4000000,
             "type_product_id": 1,
@@ -114,7 +114,7 @@ export const all_products = {
             "product_type_name": "Electronica"
         },
         {
-            "product_id": 2,
+            "product_id": 8,
             "name": "Iphone",
             "price": 4000000,
             "type_product_id": 1,

@@ -120,10 +120,16 @@
     text-decoration: none;
 }
 
-.product-cart-icon {
+.product-cart-icon-login {
     width: 1.5rem;
     height: 1.5rem;
     color: var(--green-level-1);
+}
+
+.product-cart-icon-logout {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: red;
 }
 
 .li-cart-icon {

@@ -6,7 +6,6 @@ import {
 } from '@chakra-ui/react'
 import { StoreContext } from '../../Context'
 import Layout from '../../Components/Layout'
-import { logindata } from '../../Utils/data'
 import './Login.css'
 
 function Login() {
@@ -14,13 +13,12 @@ function Login() {
     const context = useContext(StoreContext)
     const navigate = useNavigate();
 
-    if (context.userData) {
+    if (context.inLogin) {
         return <Navigate to='/' />
     };
 
     const [usernameLocal, setUsernameLocal] = useState('');
     const [passwordLocal, setPasswordLocal] = useState('');
-    const [showEye, setShowEye] = useState(false);
     const [isErrorInLogin, setIsErrorInLogin] = useState(false);
 
     const LoginUser = () => {
@@ -36,55 +34,77 @@ function Login() {
             )
         };
 
-        context.setLoginApiResponse(logindata); // -----> borrar
-        navigate('/'); // -----> borrar
+        const URL = 'http://localhost:3003/dev/login';
+        fetch(URL, requestOptions)
+            .then(response => response.json())
+            .then(data => {
 
-        // const URL = 'https://10h1dcdbp7.execute-api.us-east-1.amazonaws.com/dev/login';
-        // const URL = 'http://localhost:3020/dev/login';
-        // fetch(URL, requestOptions)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         context.setLoginApiResponse(data);
-
-        //         if (data.statusCode == 200) {
-        //             navigate('/');
-        //         } else {
-        //             setIsErrorInLogin(true);
-        //         };
-        //     });
+                if (data.statusCode == 200) {
+                    setIsErrorInLogin(false)
+                    context.setMessageFromSignup(false)
+                    GetUserData(usernameLocal)
+                } else {
+                    setIsErrorInLogin(true)
+                };
+            });
     };
+
+    const GetUserData = (username) => {
+
+        const URL = `http://localhost:3003/dev/user?username=${username}`
+        fetch(URL)
+            .then(response => response.json())
+            .then(data => {
+
+                if (data.statusCode == 200) {
+
+                    setIsErrorInLogin(false)
+                    context.setResponseGetUser(data.data[0])
+
+                    if (data.statusCode == 200) {
+                        context.setInLogin(true)
+                        navigate('/')
+                    } else {
+                        setIsErrorInLogin(true)
+                    }
+
+                } else {
+                    setIsErrorInLogin(true)
+                };
+            });
+    }
 
     const handleUsernameChange = (event) => {
         setUsernameLocal(event.target.value);
-        context.setGlobalUsername(event.target.value);
     };
 
     const handlePasswordChange = (event) => {
         setPasswordLocal(event.target.value);
     };
 
+    const [showEye, setShowEye] = useState(false);
     const handleClickEye = () => setShowEye(!showEye)
-
-    function handleLoginButton() {
-        LoginUser();
-    }
 
     return (
         <Layout>
             <div className='login-main'>
                 <h1 className='login-title'>Iniciar sesión</h1>
 
-                <FormControl
-                    className='FormControl'
-                    // isRequired
-                >
+                {
+                    context.setMessageFromSignup == false ? (
+                        <FormControl className='FormControl' >
+                            <FormLabel className='FormLabelLogin'>
+                                Tu usuario fue creado, inicia sesión con tus credenciales:
+                            </FormLabel>
+                        </FormControl>
+                    ) : ( null)
+                }
+
+                <FormControl className='FormControl' >
                     <FormLabel className='FormLabelLogin'>Usuario</FormLabel>
                     <Input
-                        type='text'
-                        name='username'
-                        placeholder=' Ingresa tu nombre de usuario.'
-                        className='InputLogin'
-                        onChange={handleUsernameChange}
+                        type='text' name='username' placeholder=' Ingresa tu nombre de usuario.'
+                        className='InputLogin' onChange={handleUsernameChange}
                     />
                 </FormControl>
 
@@ -93,12 +113,12 @@ function Login() {
                     <InputGroup size='md'>
                         <Input
                             type={showEye ? 'text' : 'password'}
-                            className='InputLogin'
-                            placeholder='Ingresa tu contraseña.'
+                            className='InputLogin' placeholder='Ingresa tu contraseña.'
                             onChange={handlePasswordChange}
                         />
                         <InputRightElement className='InputRightElement'>
-                            <Button h='1.75rem' size='sm' onClick={handleClickEye}>
+                            <Button h='1.75rem' size='sm' 
+                            onClick={handleClickEye}>
                                 {
                                     showEye ?
                                         <EyeIcon className='EyeSlashIcon'></EyeIcon>
@@ -122,9 +142,8 @@ function Login() {
 
                 <FormControl className='FormControl FormControl-Cel'>
                     <Button
-                        type='submit'
-                        className='ButtonControlLogin'
-                        onClick={handleLoginButton}
+                        type='submit' className='ButtonControlLogin'
+                        onClick={() => {LoginUser();}}
                     >
                         Iniciar sesión
                     </Button>

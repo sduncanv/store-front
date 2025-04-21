@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { 
     ShoppingBagIcon, ArrowRightStartOnRectangleIcon,
-    ShoppingCartIcon, ArrowRightEndOnRectangleIcon
+    ShoppingCartIcon, ArrowRightEndOnRectangleIcon, SquaresPlusIcon
 } from '@heroicons/react/24/solid'
 import { StoreContext } from '../../Context'
 import './Navbar.css'
@@ -49,29 +49,39 @@ const Navbar = () => {
             </div>
 
             <div>
-                {/*
-                <a href="/login">
-                <ArrowRightEndOnRectangleIcon
-                onClick={handleClickCart} className='product-cart-icon'
-                ></ArrowRightEndOnRectangleIcon>
-                </a>
-                */}
-                <NavLink to='/login'>
-                    <ArrowRightEndOnRectangleIcon onClick={handleClickLogout}
-                    className='product-cart-icon'
-                    ></ArrowRightEndOnRectangleIcon>
-                </NavLink>
+            {
+                !context.inLogin ? (
+                    <NavLink to='/login'>
+                        <ArrowRightEndOnRectangleIcon
+                        // onClick={handleClickLogout}
+                        className='product-cart-icon-login'
+                        ></ArrowRightEndOnRectangleIcon>
+                    </NavLink>
+                ) : (null)
+            }
+            {/* {
+                context.inLogin ? (
+                    <NavLink to='/create-product'>
+                        <SquaresPlusIcon
+                        // onClick={handleClickLogout}
+                        className='product-cart-icon-login'
+                        ></SquaresPlusIcon>
+                    </NavLink>
+                ) : (null)
+            } */}
+            {
+                context.inLogin ? (
+                    <NavLink to='/'>
+                        <ArrowRightStartOnRectangleIcon
+                        // onClick={handleClickLogout}
+                        className='product-cart-icon-logout'
+                        ></ArrowRightStartOnRectangleIcon>
+                    </NavLink>
+                ) : (null)
+            }
             </div>
 
-            {/* <div className="navbar-menu">
-                <a href="">Projects</a>
-                <a href="">Skills</a>
-            </div> */}
-
             {/* <ul className='navbar-ul'>
-                <li className='navbar-li'>
-                    <NavLink className='other-li' to='/'><h1 className='logo'>Store</h1></NavLink>
-                </li>
                 <li className='navbar-li navbar-search'>
                     <div className='navbar-li-div'>
                         <input
@@ -123,26 +133,12 @@ const Navbar = () => {
                 }
 
                 <li className='navbar-li-2 li-cart-icon'>
-                    
                     <ShoppingCartIcon
                         onClick={handleClickCart}
                         className='product-cart-icon'
                     ></ShoppingCartIcon>
                     <div className='navbar-cart'>{context.cartProducts.length}</div>
                 </li>
-
-                {
-                    context.userData ? (
-                        <li className='navbar-li-2 li-cart-icon'>
-                            <NavLink to='/'>
-                                <ArrowRightStartOnRectangleIcon
-                                    onClick={handleClickLogout}
-                                    className='product-cart-icon'
-                                ></ArrowRightStartOnRectangleIcon>
-                            </NavLink>
-                        </li>
-                    ) : (null)
-                }
             </ul> */}
         </nav>
     )

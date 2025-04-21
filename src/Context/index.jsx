@@ -7,6 +7,11 @@ export const StoreContext = createContext()
 export const StoreProvider = ({children}) => {
 
     const [globalUsername, setGlobalUsername] = useState('');
+    const [usernameToAuth, setUsernameToAuth] = useState('');
+    const [messageFromSignup, setMessageFromSignup] = useState(false);
+    const [inLogin, setInLogin] = useState(false);
+
+    const [responseGetUser, setResponseGetUser] = useState({});
 
     // Contains the login API response.
     // const [loginApiResponse, setLoginApiResponse] = useState({});
@@ -157,7 +162,11 @@ export const StoreProvider = ({children}) => {
             typePoducts, setTypePoducts,
             productsUser, setProductsUser,
             imgProductToCreate, setImgProductToCreate,
-            isCheckoutSideMenuOpen, openCheckoutSideMenu, closeCheckoutSideMenu
+            isCheckoutSideMenuOpen, openCheckoutSideMenu, closeCheckoutSideMenu,
+            usernameToAuth, setUsernameToAuth,
+            messageFromSignup, setMessageFromSignup,
+            inLogin, setInLogin,
+            responseGetUser, setResponseGetUser,
         }}>
             {children}
         </StoreContext.Provider>
@@ -169,7 +178,7 @@ export function AuthRoute(props) {
     const context = useContext(StoreContext)
     const location = useLocation();
 
-    if (!context.userData) {
+    if (!context.inLogin) {
         return <Navigate to='/login' state={{ from: location }} replace />;
     };
 

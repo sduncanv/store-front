@@ -65,19 +65,16 @@ const CreateProduct = () => {
             )
         };
 
-        context.setResultAPICreateProduct(crearProducto); // -----> borrar
-        navigate('/perfil'); // -----> borrar
+        const URL = 'http://localhost:3030/dev/products';
+        fetch(URL, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                context.setResultAPICreateProduct(data);
 
-        // const URL = 'http://localhost:3030/dev/products';
-        // fetch(URL, requestOptions)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         context.setResultAPICreateProduct(data);
-
-        //         if (data.statusCode == 200) {
-        //             navigate('/perfil');
-        //         }
-        //     });
+                if (data.statusCode == 200) {
+                    navigate('/perfil');
+                }
+            });
     }
 
     return (

@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    --blue-level-1: #0458a0;
+    --blue-level-2: #0079d4;
+    --cian-color: #0fffff;
+    --back-input-color: rgba(4, 4, 4, .1);
+
+    --green-level-1: #2ecc71;
+    --freeman-font: "Freeman", sans-serif;
+    --mulish-font: "Mulish", sans-serif;
+    --inconsolata-font: "Inter", sans-serif;
+}
+
+.product-page-main {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 15px;
+    height: 100vh;
+}
+
+.product-detail {
+    width: 40%;
+    padding: 10px;
+}
+
+.product-detail h1 {
+    font-size: 50px;
+    padding: 5px;
+}
+
+.product-detail h3 {
+    font-size: 25px;
+    color: var(--green-level-1);
+    padding: 5px;
+}
+
+.product-detail p {
+    padding: 0 5px;
+    font-size: 16px;
+
+    font-family: var(--inconsolata-font);
+    font-weight: 300;
+}
+
+.product-image {
+    width: 60%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    background-color: #fafafa;
+}
+
+.product-image figure {
+    width: 80%;
+}
+
+.product-image figure img {
+    width: 100%;
+}
+
+
+@media (max-width: 1023px) {}
+
+@media (max-width: 600px) {
+    .product-page-main {
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+    }
+
+    .product-image {
+        width: 100%;
+    }
+
+    .product-detail {
+        width: 100%;
+    }
+
+    .product-detail h1 {
+        font-size: 35px;
+    }
+
+    .product-detail h3 {
+        font-size: 22px;
+    }
+    
+}
