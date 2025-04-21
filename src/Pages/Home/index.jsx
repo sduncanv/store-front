@@ -1,13 +1,9 @@
 import { useContext } from 'react'
-// import { NavLink, Link } from 'react-router-dom'
 import { StoreContext } from '../../Context'
 import Layout from '../../Components/Layout'
 import Product from '../../Components/Product'
 import HomeCover from '../../Components/HomeCover'
 import './Home.css'
-// import {
-//     Input, Button, FormControl, FormLabel, Select, Textarea
-// } from '@chakra-ui/react'
 
 function Home() {
 

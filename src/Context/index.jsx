@@ -28,33 +28,33 @@ export const StoreProvider = ({children}) => {
     // --------------------------------------------
 
     // Contains the products filter by title.
-    const [filteredProducts, setFilteredProducts] = useState([]);
+    // const [filteredProducts, setFilteredProducts] = useState([]);
     const [searchByTitle, setSearchByTitle] = useState('');
 
     // Contains all products.
-    // const [allProducts, setAllProducts] = useState([]);
-    const [allProducts, setAllProducts] = useState(all_products.data); // -----> borrar
+    const [allProducts, setAllProducts] = useState([]);
+    // const [allProducts, setAllProducts] = useState(all_products.data); // -----> borrar
 
-    // const URL_ALL_PRODUCTS = 'http://localhost:3030/dev/products';
-    // useEffect(() => {
-    //     fetch(URL_ALL_PRODUCTS)
-    //     .then(response => response.json())
-    //     .then(data => setAllProducts(data.data))
-    // }, []);
+    const URL_ALL_PRODUCTS = 'http://localhost:3003/dev/products';
+    useEffect(() => {
+        fetch(URL_ALL_PRODUCTS)
+        .then(response => response.json())
+        .then(data => setAllProducts(data.data))
+    }, []);
 
     // Function to filter by title.
-    const filteredProductsByTitle = (allProducts, searchByTitle) => {
-        return allProducts?.filter(
-            product => product.name.toLowerCase().includes(
-                searchByTitle.toLowerCase()
-            )
-        );
-    };
+    // const filteredProductsByTitle = (allProducts, searchByTitle) => {
+    //     return allProducts?.filter(
+    //         product => product.name.toLowerCase().includes(
+    //             searchByTitle.toLowerCase()
+    //         )
+    //     );
+    // };
 
-    useEffect(() => {
-            if (searchByTitle) setFilteredProducts(filteredProductsByTitle(allProducts, searchByTitle))
-        }, [allProducts, searchByTitle]
-    );
+    // useEffect(() => {
+    //         if (searchByTitle) setFilteredProducts(filteredProductsByTitle(allProducts, searchByTitle))
+    //     }, [allProducts, searchByTitle]
+    // );
 
     // Contains the code from email API response.
     const [isOpenAlertForm, setIsOpenAlertForm] = useState(false);
@@ -142,7 +142,7 @@ export const StoreProvider = ({children}) => {
     return (
         <StoreContext.Provider value={{
             searchByTitle, setSearchByTitle,
-            filteredProducts, setFilteredProducts,
+            // filteredProducts, setFilteredProducts,
             globalUsername, setGlobalUsername,
             loginApiResponse, setLoginApiResponse,
             allProducts, setAllProducts,

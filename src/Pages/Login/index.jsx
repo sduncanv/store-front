@@ -60,13 +60,13 @@ function Login() {
 
                     setIsErrorInLogin(false)
                     context.setResponseGetUser(data.data[0])
+                    context.setInLogin(true)
+                    navigate('/')
 
-                    if (data.statusCode == 200) {
-                        context.setInLogin(true)
-                        navigate('/')
-                    } else {
-                        setIsErrorInLogin(true)
-                    }
+                    // if (context.response == 200) {
+                    // } else {
+                    //     setIsErrorInLogin(true)
+                    // }
 
                 } else {
                     setIsErrorInLogin(true)

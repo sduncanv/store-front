@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { PlusIcon, CheckIcon } from '@heroicons/react/24/solid'
 import { StoreContext } from '../../Context'
 import './Product.css'
@@ -57,19 +58,23 @@ const Product = (data) => {
     const price_com = `$ ${formattedPrice}`
 
     return (
-        <div className='product-detail-main'>
-            <figure>
-                <img src={data.data.url} alt="" />
-                {renderIcon(data.data.product_id)}
-            </figure>
-            <div className='product-data'>
-                <span>{data.data.name}</span>
-                <div>
-                    <p className='product-price'>{price_com}</p>
-                    <p className='product-description'>{data.data.product_type_name}</p>
+        <Link
+        className='pdm-link' to={`/product/${data.data.product_id}`} state={{product: data.data}}
+        >
+            <div className='product-detail-main'>
+                <figure className='pdm-figure'>
+                    <img src={data.data.url} alt="" />
+                    {renderIcon(data.data.product_id)}
+                </figure>
+                <div className='product-data'>
+                    <span>{data.data.name}</span>
+                    <div>
+                        <p className='product-price'>{price_com}</p>
+                        <p className='product-description'>{data.data.product_type_name}</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 

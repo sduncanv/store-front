@@ -45,7 +45,7 @@ const App = () => {
                         <Route path='/' element={<Home />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/singup' element={<Singup />} />
-                        <Route path='/product' element={<ProductPage />} />
+                        <Route path='/product/:product_id' element={<ProductPage />} />
 
                         {/* <Route path='/create-product' element={
                             <AuthRoute>

@@ -82,7 +82,7 @@ function Singupd() {
                 {
                     'username': context.globalUsername,
                     'password': passwordLocal,
-                    'email': emailLocal,
+                    'emadil': emailLocal,
                     'name': nameLocal,
                     'first_lastname': firstLastnameLocal
                 }

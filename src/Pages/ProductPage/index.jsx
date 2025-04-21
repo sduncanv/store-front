@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react'
-import { NavLink, Navigate } from 'react-router-dom'
+import React, { useState, useContext, useEffect } from 'react'
+import { useParams, useLocation, NavLink, Navigate } from 'react-router-dom'
 import { EyeSlashIcon, EyeIcon } from '@heroicons/react/24/solid'
 import {
     Input, Button, InputGroup, InputRightElement, FormControl, FormLabel
@@ -11,15 +11,43 @@ import AuthenticateUser from '../../Components/AuthenticateUser'
 
 function ProductPage() {
 
+    const { product_id } = useParams();
+    const [responseGetProduct, setRespondeGetProduct] = useState({})
+    
+    const location = useLocation();
+    const productFromState = location.state?.product;
+    const [product, setProduct] = useState(productFromState || null);
+
+    useEffect(() => {
+        if (!productFromState) {
+            const URL = `http://localhost:3003/dev/products?product_id=${product_id}`
+            fetch(URL)
+                .then(response => response.json())
+                .then(data => {
+    
+                    if (data.statusCode == 200) {
+    
+                        setRespondeGetProduct(data.data[0])
+                        setProduct(data.data[0])
+    
+                    } else {
+                        console.log("Error")
+                    };
+                });
+        }
+    }, [productFromState, product_id])
+
+    // if (!product) return <p>Cargando producto...</p>;
+
     return (
         <Layout>
             <div className='product-page-main'>
                 <div className='product-detail'>
-                    <h1>Hoodie 'Nike' oversize</h1>
-                    <p>Hoodie casual</p>
-                    <h3>$400.000</h3>
+                    <h1>{product.name}</h1>
+                    {/* <p>{product.description}</p> */}
+                    <h3>$ {product.price}</h3>
                     <br />
-                    <p>
+                    {/* <p>
                         Hoodie "Nike" Oversize De la colección S5-2024 "VISIÓN".
                     </p>
                     <br />
@@ -60,15 +88,16 @@ function ProductPage() {
                         - No usar secadora, secar al sol.
                         - No usar blanqueador.
                         - No retorcer para escurrir.
-                    </p>
+                    </p> */}
+                    <p>{product.description}</p>
                     <br />
                     <p>
-                        2024-07-18
+                        {product.created_at}
                     </p>
                 </div>
                 <div className='product-image'>
                     <figure>
-                        <img src="https://cdn-images.farfetch-contents.com/18/90/65/88/18906588_41130828_1000.jpg" alt="" />
+                        <img src={product.url} alt="" />
                     </figure>
                 </div>
             </div>

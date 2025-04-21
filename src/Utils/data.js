@@ -23,17 +23,17 @@ export const all_products = {
     "message": "Ok",
     "data": [
         {
-            "product_id": 1,
-            "name": "Hoodie 'Ojo verde' oversize",
-            "price": 4000000,
+            "product_id": 9,
+            "name": "Hoodie 'Nike' oversize",
+            "price": 405000,
             "type_product_id": 1,
-            "description": "Iphone 14 pro max",
+            "description": "Hoodie oversize con estampado de ojo verde",
             "user_id": 1,
             "active": 1,
             "created_at": "2024-07-18 20:27:34",
             "updated_at": "2024-07-18 20:27:34",
             "url": "https://cdn-images.farfetch-contents.com/18/90/65/88/18906588_41130828_1000.jpg",
-            "product_type_name": "Hoodie oversize con estampado de ojo verde"
+            "product_type_name": "Ropa"
         },
         {
             "product_id": 2,
