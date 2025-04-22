@@ -13,7 +13,7 @@ const Product = (data) => {
         context.setCount(context.count + 1);
         context.setCartProducts([...context.cartProducts, productData]);
 
-        // context.openCheckoutSideMenu();
+        context.openCheckoutSideMenu();
         // context.closeProductDetail();
     }
 
@@ -58,14 +58,31 @@ const Product = (data) => {
     const price_com = `$ ${formattedPrice}`
 
     return (
-        <Link
-        className='pdm-link' to={`/product/${data.data.product_id}`} state={{product: data.data}}
-        >
-            <div className='product-detail-main'>
-                <figure className='pdm-figure'>
-                    <img src={data.data.url} alt="" />
-                    {renderIcon(data.data.product_id)}
-                </figure>
+        // <Link
+        // className='pdm-link' to={`/product/${data.data.product_id}`} state={{product: data.data}}
+        // >
+        //     <div className='product-detail-main'>
+        //         <figure className='pdm-figure'>
+        //             <img src={data.data.url} alt="" />
+        //             {renderIcon(data.data.product_id)}
+        //         </figure>
+        //         <div className='product-data'>
+        //             <span>{data.data.name}</span>
+        //             <div>
+        //                 <p className='product-price'>{price_com}</p>
+        //                 <p className='product-description'>{data.data.product_type_name}</p>
+        //             </div>
+        //         </div>
+        //     </div>
+        // </Link>
+        <div className='product-detail-main'>
+            <figure className='pdm-figure'>
+                <img src={data.data.url} alt="" />
+                {renderIcon(data.data.product_id)}
+            </figure>
+            <Link
+            className='pdm-link' to={`/product/${data.data.product_id}`} state={{product: data.data}}
+            >
                 <div className='product-data'>
                     <span>{data.data.name}</span>
                     <div>
@@ -73,8 +90,8 @@ const Product = (data) => {
                         <p className='product-description'>{data.data.product_type_name}</p>
                     </div>
                 </div>
-            </div>
-        </Link>
+            </Link>
+        </div>
     )
 }
 

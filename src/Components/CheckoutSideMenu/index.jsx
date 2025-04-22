@@ -14,15 +14,16 @@ const CheckoutSideMenu = () => {
     }
 
     const handleCheckout = () => {
-        const orderToAdd = {
-            date: '01.02.23',
-            products: context.cartProducts,
-            totalProducts: context.cartProducts.length,
-            totalPrice: totalPrice(context.cartProducts)
-        }
-        context.setCartProducts([])
+        console.log("Boton Checkout presionado.")
+        // const orderToAdd = {
+        //     date: '01.02.23',
+        //     products: context.cartProducts,
+        //     totalProducts: context.cartProducts.length,
+        //     totalPrice: totalPrice(context.cartProducts)
+        // }
+        // context.setCartProducts([])
         // context.setOrder([...context.order, orderToAdd])
-        context.setSearchByTitle(null)
+        // context.setSearchByTitle(null)
     }
 
     if (!context.isCheckoutSideMenuOpen) {
@@ -40,7 +41,7 @@ const CheckoutSideMenu = () => {
             className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu `}
         >
             <div className='title-checkout-menu'>
-                <h2>My Order</h2>
+                <h2>Carrito de compras</h2>
                 <div>
                     <XMarkIcon
                         className='xmark-icon'

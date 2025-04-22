@@ -25,9 +25,9 @@ const Navbar = () => {
     //     localStorage.clear();
     // }
 
-    // const handleClickCart = () => {
-    //     context.openCheckoutSideMenu();
-    // }
+    const handleClickCart = () => {
+        context.openCheckoutSideMenu();
+    }
 
     return (
         <nav className='navbar'>
@@ -36,37 +36,45 @@ const Navbar = () => {
                 <a href="">Store</a>
             </div>
 
-            <div>
-            {
-                !context.inLogin ? (
-                    <NavLink to='/login'>
-                        <ArrowRightEndOnRectangleIcon
-                        // onClick={handleClickLogout}
-                        className='product-cart-icon-login'
-                        ></ArrowRightEndOnRectangleIcon>
-                    </NavLink>
-                ) : (null)
-            }
-            {/* {
-                context.inLogin ? (
-                    <NavLink to='/create-product'>
-                        <SquaresPlusIcon
-                        // onClick={handleClickLogout}
-                        className='product-cart-icon-login'
-                        ></SquaresPlusIcon>
-                    </NavLink>
-                ) : (null)
-            } */}
-            {
-                context.inLogin ? (
-                    <NavLink to='/'>
-                        <ArrowRightStartOnRectangleIcon
-                        // onClick={handleClickLogout}
-                        className='product-cart-icon-logout'
-                        ></ArrowRightStartOnRectangleIcon>
-                    </NavLink>
-                ) : (null)
-            }
+            <div className='navbar-options'>
+                {
+                    !context.inLogin ? (
+                        <NavLink to='/login'>
+                            <ArrowRightEndOnRectangleIcon
+                            // onClick={handleClickLogout}
+                            className='product-cart-icon-login'
+                            ></ArrowRightEndOnRectangleIcon>
+                        </NavLink>
+                    ) : (null)
+                }
+                {/* {
+                    context.inLogin ? (
+                        <NavLink to='/create-product'>
+                            <SquaresPlusIcon
+                            // onClick={handleClickLogout}
+                            className='product-cart-icon-login'
+                            ></SquaresPlusIcon>
+                        </NavLink>
+                    ) : (null)
+                } */}
+                {
+                    context.inLogin ? (
+                        <NavLink to='/'>
+                            <ArrowRightStartOnRectangleIcon
+                            // onClick={handleClickLogout}
+                            className='product-cart-icon-logout'
+                            ></ArrowRightStartOnRectangleIcon>
+                        </NavLink>
+                    ) : (null)
+                }
+
+                <NavLink className='link-product-cart'>
+                    <ShoppingCartIcon
+                        onClick={handleClickCart} className='product-cart-icon-login'
+                    ></ShoppingCartIcon>
+                </NavLink>
+                <p className='navbar-cart'>{context.cartProducts.length}</p>
+
             </div>
 
             {/*

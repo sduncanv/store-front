@@ -23,9 +23,8 @@ const OrderCart = props => {
                 </figure>
             </div>
             <div className='info-product'>
-                <p>{title}</p>
-                {/* <p>{price}</p> */}
-                <p>{formattedPrice}</p>
+                <p className='info-product-title'>{title}</p>
+                <p className='info-product-price'>${formattedPrice}</p>
             </div>
             {renderXMarkIcon}
         </div>

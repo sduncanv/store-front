@@ -32,15 +32,15 @@ export const StoreProvider = ({children}) => {
     const [searchByTitle, setSearchByTitle] = useState('');
 
     // Contains all products.
-    const [allProducts, setAllProducts] = useState([]);
-    // const [allProducts, setAllProducts] = useState(all_products.data); // -----> borrar
+    // const [allProducts, setAllProducts] = useState([]);
+    const [allProducts, setAllProducts] = useState(all_products.data); // -----> borrar
 
-    const URL_ALL_PRODUCTS = 'http://localhost:3003/dev/products';
-    useEffect(() => {
-        fetch(URL_ALL_PRODUCTS)
-        .then(response => response.json())
-        .then(data => setAllProducts(data.data))
-    }, []);
+    // const URL_ALL_PRODUCTS = 'http://localhost:3003/dev/products';
+    // useEffect(() => {
+    //     fetch(URL_ALL_PRODUCTS)
+    //     .then(response => response.json())
+    //     .then(data => setAllProducts(data.data))
+    // }, []);
 
     // Function to filter by title.
     // const filteredProductsByTitle = (allProducts, searchByTitle) => {

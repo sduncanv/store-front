@@ -60,7 +60,7 @@ const App = () => {
                             </AuthRoute>
                         } /> */}
                     </Routes>
-                    {/* <CheckoutSideMenu /> */}
+                    <CheckoutSideMenu />
                     {/* <Footer /> */}
                 </StoreProvider>
             </HashRouter>
