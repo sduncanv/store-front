@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 :root {
-    --hover-color: #129046;
+    --hover-color: #2ecc71;
     --green-level-1: #2ecc71;
     --freeman-font: "Freeman", sans-serif;
+    --inter-font: "Inter", sans-serif;
 }
 
 .checkout-side-menu {
@@ -45,7 +48,12 @@
     padding: 1.5rem;
     flex: 1 1 0%;
     width: 360px;
-    height: calc(100% - 160px);
+    height: calc(100% - 180px);
+}
+
+.divider {
+    margin: 10px 10px;
+    border-bottom: 2px solid rgba(4, 4, 4, 0.1);
 }
 
 .price-product {
@@ -61,16 +69,20 @@
     align-items: center;
     font-size: 20px;
     color: var(--hover-color);
-    font-family: var(--freeman-font);
+    font-family: var(--inter-font);
+    font-weight: 700;
 }
 
 .price-product button {
     padding: 5px 0;
-    border-radius: 4px;
     width: 100%; 
     color: var(--hover-color); 
     background-color: white;
     font-size: 22px;
+    font-family: var(--inter-font);
+    font-weight: 700;
+    border: 3px solid var(--hover-color);
+    border-radius: 4px;
 }
 
 /* @media (max-width: 1023px) {} */

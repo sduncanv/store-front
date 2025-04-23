@@ -66,7 +66,7 @@ export const StoreProvider = ({children}) => {
     const [singupApiResponse, setSingupApiResponse] = useState(null);
 
     // Contains the data to create product (input).
-    const [nameProductToCreate, setNameProductToCreate] = useState('');
+    // const [nameProductToCreate, setNameProductToCreate] = useState('');
     const [priceProductToCreate, setPriceProductToCreate] = useState('');
     const [typeProductToCreate, setTypeProductToCreate] = useState(null);
     const [descriptionProductToCreate, setDescriptionProductToCreate] = useState('');
@@ -150,7 +150,7 @@ export const StoreProvider = ({children}) => {
             codeAuthEmail, setCodeAuthEmail,
             resultApiCodeAuth, setResultApiCodeAuth,
             singupApiResponse, setSingupApiResponse,
-            nameProductToCreate, setNameProductToCreate,
+            // nameProductToCreate, setNameProductToCreate,
             priceProductToCreate, setPriceProductToCreate,
             typeProductToCreate, setTypeProductToCreate,
             descriptionProductToCreate, setDescriptionProductToCreate,

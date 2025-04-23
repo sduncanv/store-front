@@ -4,9 +4,11 @@ import { StoreContext } from '../../Context'
 import OrderCart from '../../Components/OrderCart'
 import { totalPrice } from '../../Utils'
 import './styles.css'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 const CheckoutSideMenu = () => {
     const context = useContext(StoreContext);
+    // const navigate = useNavigate();
 
     const handleDelete = (id) => {
         const filteredProducts = context.cartProducts.filter(product => product.product_id != id)
@@ -62,6 +64,7 @@ const CheckoutSideMenu = () => {
                     ))
                 }
             </div>
+            <div className='divider'></div>
             <div className='price-product'>
                 <p>
                     <span className='font-light'>Total:</span>
@@ -75,8 +78,11 @@ const CheckoutSideMenu = () => {
                         Checkout
                     </button>
                 </Link> */}
-                <button onClick={() => handleCheckout()}>
-                    Checkout
+                <button type='button'
+                onClick={() => window.open('https://wa.me/+573011561394?text=prueba', '_blank')}
+                // onClick={() => handleCheckout()}
+                >
+                    Comprar
                 </button>
             </div>
         </aside>
