@@ -1,39 +1,16 @@
+import React from 'react'
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import { StoreProvider, AuthRoute } from '../../Context'
 import Navbar from '../../Components/Navbar'
-import Footer from '../../Components/Footer'
 import Home from '../Home'
 import Login from '../Login'
 import Singup from '../Singup'
-import Profile from '../Profile'
+import ProductPage from '../ProductPage'
 import CreateProduct from '../CreateProduct'
 import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
-import React, { useState, useContext } from 'react'
-import ProductPage from '../ProductPage'
+// import Profile from '../Profile'
+// import Footer from '../../Components/Footer'
 
-// const AppRoutes = () => {
-//     let routes = useRoutes([
-//         {path: '/', element: <Home/>},
-//         {path: '/login', element: <Login/>},
-//         {path: '/singup', element: <Singup/>},
-//         // {path: '/authenticate-user', element: <Auth/>},
-//         // {path: '/crear-producto', element: <CreateProduct/>},
-//     ])
-
-//     return routes
-// }
-
-// const App = () => {
-//     return (
-//         <StoreProvider>
-//             <BrowserRouter>
-//                 <Navbar />
-//                 <AppRoutes/>
-//                 <Footer />
-//             </BrowserRouter>
-//         </StoreProvider>
-//     )
-// }
 
 const App = () => {
     return (
@@ -53,7 +30,6 @@ const App = () => {
                             </AuthRoute>
                         } />
 
-                        {/* <Route path='/perfil' element={<Profile />} /> */}
                         {/* <Route path='/perfil' element={
                             <AuthRoute>
                                 <Profile />

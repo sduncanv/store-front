@@ -12,13 +12,11 @@
     height: calc(100vh - 80px);
     top: 80px;
     background-color: white;
-    position: fixed; 
-    right: 0; 
-    flex-direction: column; 
-    /* border-radius: 0.5rem;  */
-    border-width: 1px; 
+    position: fixed;
+    right: 0;
+    flex-direction: column;
+    border-width: 1px;
     border-color: #000000;
-    /* margin-top: 5px;*/
 }
 
 .title-checkout-menu {
@@ -43,8 +41,6 @@
 
 .elements {
     overflow-y: scroll;
-    /* padding-left: 1.5rem;
-    padding-right: 1.5rem; */
     padding: 1.5rem;
     flex: 1 1 0%;
     width: 360px;

@@ -5,16 +5,14 @@ import { StoreContext } from '../../Context'
 import './Product.css'
 
 const Product = (data) => {
+
     const context = useContext(StoreContext)
 
     const addProductToCart = (event, productData) => {
         event.stopPropagation();
-
         context.setCount(context.count + 1);
         context.setCartProducts([...context.cartProducts, productData]);
-
         context.openCheckoutSideMenu();
-        // context.closeProductDetail();
     }
 
     const removeProductToCart = (event, productData) => {
@@ -25,6 +23,7 @@ const Product = (data) => {
     }
 
     const renderIcon = (product_id) => {
+
         const isInCart = context.cartProducts.filter(product => product.product_id === product_id).length > 0
 
         if (isInCart) {
@@ -43,7 +42,6 @@ const Product = (data) => {
                     onClick={(event) => addProductToCart(event, data.data)}
                 >
                     <PlusIcon className='product-add-icon'></PlusIcon>
-                    {/* <ShoppingBagIcon className='product-add-icon'></ShoppingBagIcon> */}
                 </div>
             )
         }
@@ -58,23 +56,6 @@ const Product = (data) => {
     const price_com = `$ ${formattedPrice}`
 
     return (
-        // <Link
-        // className='pdm-link' to={`/product/${data.data.product_id}`} state={{product: data.data}}
-        // >
-        //     <div className='product-detail-main'>
-        //         <figure className='pdm-figure'>
-        //             <img src={data.data.url} alt="" />
-        //             {renderIcon(data.data.product_id)}
-        //         </figure>
-        //         <div className='product-data'>
-        //             <span>{data.data.name}</span>
-        //             <div>
-        //                 <p className='product-price'>{price_com}</p>
-        //                 <p className='product-description'>{data.data.product_type_name}</p>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </Link>
         <div className='product-detail-main'>
             <figure className='pdm-figure'>
                 <img src={data.data.url} alt="" />

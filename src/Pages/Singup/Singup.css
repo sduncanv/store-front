@@ -15,11 +15,6 @@
 
 .singup-main {
     width: 50%;
-    /*
-    height: 750px;
-    width: 50%;
-    padding: 15px;
-    */
     padding: 20px;
     overflow-y: auto;
     display: flex;
@@ -86,9 +81,6 @@
     width: 50%;
     height: 45px;
     border-color: var(--green-level-1);
-    /*
-    border: none;
-    */
     border-radius: 5px;
     color: var(--green-level-1);
     cursor: pointer;
@@ -110,11 +102,8 @@
 }
 
 .singup-code-confirmation {
-    /* border-radius: 5px; */
-    /* border-color: red; */
     width: 100%;
     border: solid 0.1px;
-    /* background: aliceblue; */
     padding: 10px;
 }
 

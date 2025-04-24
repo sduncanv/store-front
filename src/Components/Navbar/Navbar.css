@@ -1,21 +1,12 @@
-/*
-@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mooli&family=Mulish:wght@200&display=swap');
-*/
 @import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
     --back-input-color:  #d1d1d1;
-    --blue-cian: #00e1ff;
     --mulish-font: "Mulish", sans-serif;
-
-    --hover-color: #55d991;
     --green-level-1: #2ecc71;
-    --font-kode-mono: "Kode Mono", serif;
     --font-press-start-2p: "Press Start 2P", serif;
-    --font-inter: "Inter", serif;
 }
 
 .navbar {
@@ -49,19 +40,6 @@
 .navbar-options a {
     padding: 0 1px 0 10px;
 }
-
-/* .navbar-main {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    text-align: center;
-    height: 120px;
-    position: fixed;
-    z-index: 1000;
-    background-color: greenyellow;
-    width: 100%;
-} */
 
 .navbar-ul {
     display: flex;
@@ -150,16 +128,11 @@
 
 .navbar-cart {
     font-size: 15px;
-    /* font-family: "Freeman", sans-serif; */
     color: black;
     padding: 2px 0 0 0;
 }
 
 @media (max-width: 1023px) {
-    /* .logo {
-        font-size: 40px;
-    } */
-
     .navbar {
         height: 50px;
     }
@@ -181,24 +154,9 @@
         font-size: 15px;
     }
 
-    /* .product-cart-icon {
-        font-size: 15px;
-    } */
 }
 
 @media (max-width: 600px) {
-    /* .logo {
-        font-size: 30px;
-    } */
-
-    /* .navbar-search {
-        display: none;
-    } */
-
-    /* .navbar-main {
-        height: 65px;
-    } */
-
     .navbar {
         height: 40px;
     }
@@ -219,10 +177,6 @@
     .new_product {
         font-size: 15px;
     }
-
-    /* .product-cart-icon {
-        font-size: 15px;
-    } */
 
     .navbar-cart {
         font-size: 14px;

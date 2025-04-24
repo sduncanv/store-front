@@ -11,15 +11,26 @@ import './Login.css'
 function Login() {
 
     const context = useContext(StoreContext)
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     if (context.inLogin) {
         return <Navigate to='/' />
-    };
+    }
 
-    const [usernameLocal, setUsernameLocal] = useState('');
-    const [passwordLocal, setPasswordLocal] = useState('');
-    const [isErrorInLogin, setIsErrorInLogin] = useState(false);
+    const [usernameLocal, setUsernameLocal] = useState('')
+    const [passwordLocal, setPasswordLocal] = useState('')
+    const [isErrorInLogin, setIsErrorInLogin] = useState(false)
+
+    const handleUsernameChange = (event) => {
+        setUsernameLocal(event.target.value)
+    }
+
+    const handlePasswordChange = (event) => {
+        setPasswordLocal(event.target.value)
+    }
+
+    const [showEye, setShowEye] = useState(false)
+    const handleClickEye = () => setShowEye(!showEye)
 
     const LoginUser = () => {
 
@@ -32,9 +43,9 @@ function Login() {
                     'password': passwordLocal,
                 }
             )
-        };
+        }
 
-        const URL = 'http://localhost:3003/dev/login';
+        const URL = 'http://localhost:3003/dev/login'
         fetch(URL, requestOptions)
             .then(response => response.json())
             .then(data => {
@@ -45,9 +56,9 @@ function Login() {
                     GetUserData(usernameLocal)
                 } else {
                     setIsErrorInLogin(true)
-                };
-            });
-    };
+                }
+            })
+    }
 
     const GetUserData = (username) => {
 
@@ -63,27 +74,11 @@ function Login() {
                     context.setInLogin(true)
                     navigate('/')
 
-                    // if (context.response == 200) {
-                    // } else {
-                    //     setIsErrorInLogin(true)
-                    // }
-
                 } else {
                     setIsErrorInLogin(true)
-                };
-            });
+                }
+            })
     }
-
-    const handleUsernameChange = (event) => {
-        setUsernameLocal(event.target.value);
-    };
-
-    const handlePasswordChange = (event) => {
-        setPasswordLocal(event.target.value);
-    };
-
-    const [showEye, setShowEye] = useState(false);
-    const handleClickEye = () => setShowEye(!showEye)
 
     return (
         <Layout>
@@ -143,7 +138,7 @@ function Login() {
                 <FormControl className='FormControl FormControl-Cel'>
                     <Button
                         type='submit' className='ButtonControlLogin'
-                        onClick={() => {LoginUser();}}
+                        onClick={() => {LoginUser()}}
                     >
                         Iniciar sesión
                     </Button>

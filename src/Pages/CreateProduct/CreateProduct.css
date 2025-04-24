@@ -4,17 +4,11 @@
 
 .create-product-main {
     width: 35%;
-    /*
-    height: 750px;
-    width: 50%;
-    padding: 15px;
-    */
     padding: 20px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
 }
 
 .cadp-preview {
@@ -23,7 +17,6 @@
     flex-direction: row;
     align-items: flex-start;
     padding: 15px;
-    /* height: 100vh; */
     border-left: 2px solid gray;
 }
 

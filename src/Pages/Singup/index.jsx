@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react'
 import { NavLink, Navigate } from 'react-router-dom'
-import { EyeSlashIcon, EyeIcon } from '@heroicons/react/24/solid'
 import {
     Input, Button, InputGroup, InputRightElement, FormControl, FormLabel
 } from '@chakra-ui/react'
-import Layout from '../../Components/Layout'
+import { EyeSlashIcon, EyeIcon } from '@heroicons/react/24/solid'
 import { StoreContext } from '../../Context'
-import './Singup.css'
+import Layout from '../../Components/Layout'
 import AuthenticateUser from '../../Components/AuthenticateUser'
+import './Singup.css'
 
 function Singup() {
 
@@ -15,14 +15,22 @@ function Singup() {
 
     if (context.inLogin) {
         return <Navigate to='/' />
-    };
+    }
 
     const [emailLocal, setEmailLocal] = useState('')
     const [usernameLocal, setUsernameLocal] = useState('')
     const [passwordLocal, setPasswordLocal] = useState('')
 
-    const [isErrorInSignUp, setIsErrorInSignUp] = useState(false);
-    const [isCreated, setIsCreated] = useState(false);
+    const handleUsernameChange = (event) => {
+        setUsernameLocal(event.target.value)
+        context.setUsernameToAuth(event.target.value)
+    }
+
+    const [showEye, setShowEye] = useState(false)
+    const handleClick = () => setShowEye(!showEye)
+
+    const [isErrorInSignUp, setIsErrorInSignUp] = useState(false)
+    const [isCreated, setIsCreated] = useState(false)
 
     const CreateUser = () => {
 
@@ -34,44 +42,24 @@ function Singup() {
                     'email': emailLocal,
                     'username': usernameLocal,
                     'password': passwordLocal,
-                    'phone_number': '+573005055744',
+                    'phone_number': '+573005055744', // Pendiente
                 }
             )
-        };
+        }
 
-        const URL = 'http://localhost:3003/dev/user';
+        const URL = 'http://localhost:3003/dev/user'
         fetch(URL, requestOptions)
             .then(response => response.json())
             .then(data => {
-                context.setSingupApiResponse(data)
-                console.log('data ----> ', data);
-                
                 if (data.statusCode == 200) {
-                    console.log('Usuario creado correctamente');
                     setIsCreated(true)
                     setIsErrorInSignUp(false)
                 } else {
-                    console.log('Error al crear el usuario');
-                    setIsErrorInSignUp(true);
-                };
-            });
+                    setIsErrorInSignUp(true)
+                }
+            })
     }
 
-    const handleEmailChange = (event) => {
-        setEmailLocal(event.target.value);
-    };
-
-    const handleUsernameChange = (event) => {
-        setUsernameLocal(event.target.value);
-        context.setUsernameToAuth(event.target.value);
-    };
-
-    const handlePasswordChange = (event) => {
-        setPasswordLocal(event.target.value);
-    };
-
-    const [showEye, setShowEye] = useState(false)
-    const handleClick = () => setShowEye(!showEye)
 
     return (
         <Layout>
@@ -83,7 +71,7 @@ function Singup() {
                     <Input
                         type='email' name='email' className='InputSingup'
                         placeholder='Escribe tu correo electrónico.'
-                        onChange={handleEmailChange}
+                        onChange={(event) => setEmailLocal(event.target.value)}
                     />
                 </FormControl>
 
@@ -102,7 +90,7 @@ function Singup() {
                         <Input
                             type={showEye ? 'text' : 'password'}
                             className='InputSingup' placeholder='Ingresa una contraseña.'
-                            onChange={handlePasswordChange}
+                            onChange={(event) => setPasswordLocal(event.target.value)}
                         />
                         <InputRightElement className='InputRightElement'>
                             <Button h='1.75rem' size='sm' onClick={handleClick}>
@@ -132,9 +120,9 @@ function Singup() {
                         <FormControl className='FormControl FormControl-Cel-Singup'>
                             <Button
                                 type='submit' className='ButtonControlSingup'
-                                onClick={() => {CreateUser();}}
-                                // isLoading={!resultValidationBotton}
+                                onClick={() => {CreateUser()}}
                                 loadingText='LLena todos los campos'
+                                // isLoading={!resultValidationBotton}
                                 // colorScheme={!resultValidationBotton ? 'teal' : 'gray'}
                                 // variant={!resultValidationBotton ? 'solid' : 'outline'}
                             >

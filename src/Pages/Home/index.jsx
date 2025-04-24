@@ -2,12 +2,11 @@ import { useContext } from 'react'
 import { StoreContext } from '../../Context'
 import Layout from '../../Components/Layout'
 import Product from '../../Components/Product'
-import HomeCover from '../../Components/HomeCover'
 import './Home.css'
 
 function Home() {
 
-    const context = useContext(StoreContext);
+    const context = useContext(StoreContext)
 
     const renderView = () => {
         if (context.searchByTitle?.length > 0) {
@@ -35,18 +34,6 @@ function Home() {
 
     return (
         <Layout>
-            {/* <HomeCover /> */}
-            {/* <NavLink to='/crear-producto'>
-                <Button
-                    size='md'
-                    height='48px'
-                    width='200px'
-                    border='2px'
-                    borderColor='green.500'
-                >
-                    Crear producto
-                </Button>
-            </NavLink> */}
             <div className='product-main'>
                 {renderView()}
             </div>

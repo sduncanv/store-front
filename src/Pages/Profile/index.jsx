@@ -13,21 +13,9 @@ const Profile = () => {
 
     const context = useContext(StoreContext);
 
-    // const fetchProductsUser = useCallback(() => {
-    //     // const URL = `https://10h1dcdbp7.execute-api.us-east-1.amazonaws.com/dev/user?user_id=${context.userData?.user_id}`;
-    //     const URL = `http://localhost:3030/dev/products?user_id=${context.userData?.user_id}`;
-    //     fetch(URL)
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             context.setProductsUser(data.data)
-    //         });
-    // }, [context.userData?.user_id, context.setProductsUser]);
-
     useEffect(() => {
-        // context.setAuthenticated(true)
         if (Object.keys(context.productsUser).length === 0) {
             // fetchProductsUser();
-            context.setProductsUser(dataPro.data) // -----> borrar
         }
     }, []);
 
