@@ -29,6 +29,10 @@
     background-color: var(--back-input-color);
 }
 
+.chakra-select__icon-wrapper.css-162mkon {
+    display: none;
+}
+
 .create-p-textarea {
     max-width: 100%;
     min-width: 100%;

@@ -162,8 +162,10 @@ export function getDate() {
     const day = String(now.getDate()).padStart(2, '0');
 
     const formattedDate = `${year}${month}${day}`;
+    const formattedCurrentDate = `${day}/${month}/${year}`;
 
     return {
-        formattedDate: formattedDate
+        formattedDate: formattedDate,
+        formattedCurrentDate: formattedCurrentDate
     };
 }

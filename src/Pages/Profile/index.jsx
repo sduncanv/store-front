@@ -13,16 +13,31 @@ const Profile = () => {
 
     const context = useContext(StoreContext);
 
-    useEffect(() => {
-        if (Object.keys(context.productsUser).length === 0) {
-            // fetchProductsUser();
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (Object.keys(context.productsUser).length === 0) {
+    //         // fetchProductsUser();
+    //     }
+    // }, []);
 
     const renderAllProducts = () => {
-        if (context.productsUser?.length > 0) {
+
+        // if (context.productsUser?.length > 0) {
+        //     return (
+        //         context.productsUser?.map(product => (
+        //             <Product key={product.product_id} data={product} />
+        //         ))
+        //     )
+        // }
+
+        const user_id = context.responseGetUser?.user_id
+
+        const filteredProductsByUser = context.allProducts?.filter( // allProducts es una lista
+            product => product.user_id === user_id
+        )
+
+        if (filteredProductsByUser?.length > 0) {
             return (
-                context.productsUser?.map(product => (
+                filteredProductsByUser?.map(product => (
                     <Product key={product.product_id} data={product} />
                 ))
             )
@@ -48,13 +63,10 @@ const Profile = () => {
             </div> */}
             <HeaderProfile />
             <div className='buttons-profile'>
-                <Link to='/crear-producto'>
+                <Link to='/create-product'>
                     <Button
-                        size='md'
-                        height='48px'
-                        width='200px'
-                        border='2px'
-                        borderColor='green.500'
+                        size='md' height='48px' width='200px'
+                        border='2px' borderColor='green.500'
                     >
                         Crear producto
                     </Button>

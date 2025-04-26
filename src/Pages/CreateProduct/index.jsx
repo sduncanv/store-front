@@ -20,9 +20,10 @@ const CreateProduct = () => {
     const [newTypeProduct, setNewTypeProduct] = useState('')
     const [newDescriptionProduct, setNewDescriptionProduct] = useState('')
     const [newImageProduct, setnewImageProduct] = useState('')
+    const [previewImage, setPreviewImage] = useState('')
 
     const renderTypeProducts = () => {
-        
+
         if (context.typePoducts?.length > 0) {
             return (
                 context.typePoducts?.map(t_product => (
@@ -44,8 +45,14 @@ const CreateProduct = () => {
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
-                setnewImageProduct(base64String)
+                // const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
+                // setnewImageProduct(base64String)
+
+                const fullBase64 = reader.result;
+                const pureBase64 = fullBase64.split(',')[1];
+
+                setnewImageProduct(pureBase64);
+                setPreviewImage(fullBase64);
             };
             reader.readAsDataURL(file);
         }
@@ -84,10 +91,12 @@ const CreateProduct = () => {
             });
     }
 
-    const formattedPrice = newPriceProduct.toLocaleString('es-CO', {
+    const price = Number(newPriceProduct);
+    const formattedPrice = price.toLocaleString('es-CO', {
         style: 'decimal', minimumFractionDigits: 0,
     });
-    const price_com = `${formattedPrice}`
+
+    // const price_com = `${formattedPrice}`
 
     return (
         <Layout>
@@ -107,13 +116,13 @@ const CreateProduct = () => {
                     </FormControl>
 
                     <FormControl className='FormControl' isRequired>
-                        <FormLabel className='FormLabelSingup' >Precio del producto</FormLabel>
+                        <FormLabel className='FormLabelSingup'>Precio del producto</FormLabel>
                         <Input
                             type='number'
                             name='product_price'
                             placeholder='¿Qué precio tendrá el producto?'
                             className='InputSingup'
-                            onChange={(event => setNewPriceProduct(event.target.value))}
+                            onChange={(event) => setNewPriceProduct(event.target.value)}
                         />
                     </FormControl>
 
@@ -124,7 +133,9 @@ const CreateProduct = () => {
                             placeholder='Categoría del producto'
                             onChange={(event) => setNewTypeProduct(event.target.value)}
                         >
-                            {renderTypeProducts()}
+                            {/* {renderTypeProducts()} */}
+                            <option key='1' value='1'>Ropaaa</option>
+                            <option key='2' value='2'>Electrooo</option>
                         </Select>
                     </FormControl>
 
@@ -132,7 +143,7 @@ const CreateProduct = () => {
                         <FormLabel className='FormLabelSingup' >Imagen</FormLabel>
                         <input
                             onChange={handleFileChange}
-                            type="file" name="image" accept="image/*"
+                            type="file" name="image" id="image"  accept="image/*"
                         ></input>
                     </FormControl>
 
@@ -158,17 +169,19 @@ const CreateProduct = () => {
                 <div className='cadp-preview'>
                     <div className='product-detail'>
                         <h1>{newNameProduct}</h1>
-                        <h3>$ {price_com}</h3>
+                        <h3>$ {formattedPrice}</h3>
                         <br />
                         <p>{newDescriptionProduct}</p>
                         <br />
                         <p>
-                            {date.formattedDate}
+                            {date.formattedCurrentDate}
                         </p>
                     </div>
                     <div className='product-image'>
                         <figure>
-                            <img src="https://acdn.mitiendanube.com/stores/002/413/552/products/x001-b8a45680c3a1883c8e169738468713791-2a2b3d0b3f1ac46b5e16973849453376-1024-1024.webp" alt="" />
+                            {/* <img src="https://acdn.mitiendanube.com/stores/002/413/552/products/x001-b8a45680c3a1883c8e169738468713791-2a2b3d0b3f1ac46b5e16973849453376-1024-1024.webp" alt="" /> */}
+                            {/* <img src={previewImage} alt="Vista previa" /> */}
+                            <img src={previewImage ? previewImage : 'https://www.tenvinilo.co/build/images/web/services/upload.jpg'} alt="Vista previa" />
                         </figure>
                     </div>
                 </div>

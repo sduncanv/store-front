@@ -8,7 +8,7 @@ import Singup from '../Singup'
 import ProductPage from '../ProductPage'
 import CreateProduct from '../CreateProduct'
 import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
-// import Profile from '../Profile'
+import Profile from '../Profile'
 // import Footer from '../../Components/Footer'
 
 
@@ -30,11 +30,11 @@ const App = () => {
                             </AuthRoute>
                         } />
 
-                        {/* <Route path='/perfil' element={
+                        <Route path='/profile' element={
                             <AuthRoute>
                                 <Profile />
                             </AuthRoute>
-                        } /> */}
+                        } />
                     </Routes>
                     <CheckoutSideMenu />
                     {/* <Footer /> */}

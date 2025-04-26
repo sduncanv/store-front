@@ -20,6 +20,7 @@ function Singup() {
     const [emailLocal, setEmailLocal] = useState('')
     const [usernameLocal, setUsernameLocal] = useState('')
     const [passwordLocal, setPasswordLocal] = useState('')
+    const [phoneNumberLocal, setPhoneNumberLocal] = useState('')
 
     const handleUsernameChange = (event) => {
         setUsernameLocal(event.target.value)
@@ -42,7 +43,7 @@ function Singup() {
                     'email': emailLocal,
                     'username': usernameLocal,
                     'password': passwordLocal,
-                    'phone_number': '+573005055744', // Pendiente
+                    'phone_number': `+57${phoneNumberLocal}`, // Pendiente
                 }
             )
         }
@@ -84,7 +85,7 @@ function Singup() {
                     />
                 </FormControl>
 
-                <FormControl className='FormControl'>
+                <FormControl isRequired className='FormControl'>
                     <FormLabel className='FormLabelSingup'>Contraseña</FormLabel>
                     <InputGroup size='md'>
                         <Input
@@ -103,6 +104,15 @@ function Singup() {
                             </Button>
                         </InputRightElement>
                     </InputGroup>
+                </FormControl>
+
+                <FormControl isRequired className='FormControl'>
+                    <FormLabel className='FormLabelSingup'>Número de teléfono</FormLabel>
+                    <Input
+                        type='number' name='phone_number'
+                        className='InputSingup' placeholder='Escribe tu número de teléfono.'
+                        onChange={(event) => setPhoneNumberLocal(event.target.value)}
+                    />
                 </FormControl>
 
                 {

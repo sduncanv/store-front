@@ -4,6 +4,7 @@ import {
     ArrowRightStartOnRectangleIcon, ShoppingCartIcon,
     ArrowRightEndOnRectangleIcon, SquaresPlusIcon
 } from '@heroicons/react/24/solid'
+import { Avatar, AvatarBadge, AvatarGroup, Wrap, WrapItem } from '@chakra-ui/react'
 import { StoreContext } from '../../Context'
 import './Navbar.css'
 
@@ -28,11 +29,24 @@ const Navbar = () => {
                     !context.inLogin ? (
                         <NavLink to='/login'>
                             <ArrowRightEndOnRectangleIcon
-                            className='product-cart-icon-login'
+                            className='product-cart-icon-login' title='Iniciar sesión'
                             ></ArrowRightEndOnRectangleIcon>
                         </NavLink>
                     ) : (null)
                 }
+
+                {
+                    context.inLogin ? (
+                        <NavLink to='/profile'>
+                            <Wrap className='navbar-wrap'>
+                                <WrapItem className='navbar-wrap-item'>
+                                    <Avatar className='navbar-avatar' name={context.responseGetUser?.name} src='https://bit.ly/dan-abramov' />
+                                </WrapItem>
+                            </Wrap>
+                        </NavLink>
+                    ) : (null)
+                }
+
                 {
                     context.inLogin ? (
                         <NavLink to='/create-product'>

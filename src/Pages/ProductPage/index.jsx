@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
+import { useNumberInput, HStack, Button, Input } from '@chakra-ui/react'
 import Layout from '../../Components/Layout'
 import './ProductPage.css'
 
@@ -27,6 +28,18 @@ function ProductPage() {
         }
     }, [productFromState, product_id])
 
+    const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } = useNumberInput({
+      step: 1,
+      defaultValue: 1,
+      min: 1,
+      max: 10,
+    //   precision: 2,
+    })
+
+    const inc = getIncrementButtonProps()
+    const dec = getDecrementButtonProps()
+    const input = getInputProps()
+
     return (
         <Layout>
             <div className='product-page-main'>
@@ -34,6 +47,12 @@ function ProductPage() {
                     <h1>{responseGetProduct.name}</h1>
                     <br />
                     <h3>$ {responseGetProduct.price}</h3>
+                    <br />
+                    <HStack className='ppm-HStack'>
+                        <Button className='ppm-Button' {...dec}>-</Button>
+                        <Input className='ppm-Input' {...input} />
+                        <Button className='ppm-Button' {...inc}>+</Button>
+                    </HStack>
                     <br />
                     <p>{responseGetProduct.description}</p>
                     <br />

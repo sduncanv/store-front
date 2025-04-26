@@ -13,7 +13,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 10px 25px;
     text-align: center;
     height: 80px;
     position: fixed;
@@ -109,6 +109,32 @@
     width: 1.5rem;
     height: 1.5rem;
     color: var(--green-level-1);
+}
+
+.product-cart-icon-login:after {
+    position: absolute;
+    bottom: 0;
+    left: -4px;
+    display: block;
+    height: 40%;
+    width: calc(100% + 7px);
+    content: "";
+    background-color: #2ecc71;
+    z-index: -1;
+}
+
+.navbar-wrap {
+    height: 28px;
+    width: 28px;
+}
+
+.navbar-avatar {
+    height: 28px;
+    width: 28px;
+}
+
+.navbar-avatar img {
+    border-radius: 80px;
 }
 
 .product-cart-icon-logout {
