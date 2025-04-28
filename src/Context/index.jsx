@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useContext } from 'react'
 import { useLocation, Navigate } from 'react-router-dom'
-import { type_products } from '../Utils/data'
+import { all_products, type_products } from '../Utils/data'
 
 export const StoreContext = createContext()
 
@@ -12,19 +12,19 @@ export const StoreProvider = ({children}) => {
 
     const [usernameToAuth, setUsernameToAuth] = useState('')
 
-    const [allProducts, setAllProducts] = useState([])
-    // const [allProducts, setAllProducts] = useState(all_products.data) // Borrar, datos de prueba
+    // const [allProducts, setAllProducts] = useState([])
+    const [allProducts, setAllProducts] = useState(all_products.data) // Borrar, datos de prueba
 
-    const URL_ALL_PRODUCTS = 'http://localhost:3004/dev/products'
-    const getAllProducts = () => {
-        fetch(URL_ALL_PRODUCTS)
-            .then(response => response.json())
-            .then(data => setAllProducts(data.data))
-    }
+    // const URL_ALL_PRODUCTS = 'http://localhost:3004/dev/products'
+    // const getAllProducts = () => {
+    //     fetch(URL_ALL_PRODUCTS)
+    //         .then(response => response.json())
+    //         .then(data => setAllProducts(data.data))
+    // }
 
-    useEffect(() => {
-        getAllProducts()
-    }, [])
+    // useEffect(() => {
+    //     getAllProducts()
+    // }, [])
 
     const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)
     const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
@@ -60,7 +60,7 @@ export const StoreProvider = ({children}) => {
             responseGetUser, setResponseGetUser,
             usernameToAuth, setUsernameToAuth,
             allProducts, setAllProducts,
-            getAllProducts,
+            // getAllProducts,
             isCheckoutSideMenuOpen, openCheckoutSideMenu, closeCheckoutSideMenu,
             cartProducts, setCartProducts,
             count, setCount,

@@ -13,10 +13,10 @@ const CreateProduct = () => {
 
     const context = useContext(StoreContext)
     const navigate = useNavigate()
-    const date = getDate();
+    const date = getDate()
 
     const [newNameProduct, setNewNameProduct] = useState('Nombre del producto')
-    const [newPriceProduct, setNewPriceProduct] = useState('0.000.000')
+    const [newPriceProduct, setNewPriceProduct] = useState('0000000')
     const [newTypeProduct, setNewTypeProduct] = useState('')
     const [newDescriptionProduct, setNewDescriptionProduct] = useState('')
     const [newImageProduct, setnewImageProduct] = useState('')
@@ -40,27 +40,29 @@ const CreateProduct = () => {
 
     const handleFileChange = (event) => {
 
-        const file = event.target.files[0];
+        const file = event.target.files[0]
 
         if (file) {
-            const reader = new FileReader();
+            const reader = new FileReader()
             reader.onloadend = () => {
-                // const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
+                // const base64String = reader.result.replace('data:', '').replace(/^.+,/, '')
                 // setnewImageProduct(base64String)
 
-                const fullBase64 = reader.result;
-                const pureBase64 = fullBase64.split(',')[1];
+                const fullBase64 = reader.result
+                const pureBase64 = fullBase64.split(',')[1]
 
-                setnewImageProduct(pureBase64);
-                setPreviewImage(fullBase64);
-            };
-            reader.readAsDataURL(file);
+                setnewImageProduct(pureBase64)
+                setPreviewImage(fullBase64)
+            }
+            reader.readAsDataURL(file)
         }
-    };
+    }
+
+    const [isErrorInCreateProduct, setIsErrorInCreateProduct] = useState(false)
 
     const CreateProductApi = () => {
 
-        const filename = `user_${context.responseGetUser?.user_id}-date_${date.formattedDate}`;
+        const filename = `user_${context.responseGetUser?.user_id}-date_${date.formattedDate}`
 
         const requestOptions = {
             method: 'POST',
@@ -78,25 +80,26 @@ const CreateProduct = () => {
                     }
                 }
             )
-        };
+        }
 
-        const URL = 'http://localhost:3004/dev/products';
+        const URL = 'http://localhost:3004/dev/products'
         fetch(URL, requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data.statusCode == 200) {
-                    context.getAllProducts()
-                    navigate('/');
+                    // context.getAllProducts()
+                    setIsErrorInCreateProduct(false)
+                    navigate('/')
+                } else {
+                    setIsErrorInCreateProduct(true)
                 }
-            });
+            })
     }
 
-    const price = Number(newPriceProduct);
+    const price = Number(newPriceProduct)
     const formattedPrice = price.toLocaleString('es-CO', {
         style: 'decimal', minimumFractionDigits: 0,
-    });
-
-    // const price_com = `${formattedPrice}`
+    })
 
     return (
         <Layout>
@@ -155,6 +158,16 @@ const CreateProduct = () => {
                             placeholder='Escribe detalles del producto'
                         />
                     </FormControl>
+
+                    {
+                        isErrorInCreateProduct ? (
+                            <FormControl className='FormControl'>
+                                <FormLabel className='FormLabelLogin'>
+                                    Error al crear el producto. Intentalo de nuevo.
+                                </FormLabel>
+                            </FormControl>
+                        ) : (null)
+                    }
 
                     <FormControl className='FormControl FormControl-Cel-Singup'>
                         <Button

@@ -7,7 +7,7 @@ export function validateString(string) {
             isValid: false
         };
     }
-  
+
     // 2. Validar la presencia de números
     const containsNumbers = /[0-9]/.test(string);
     if (containsNumbers) {
@@ -35,7 +35,9 @@ export function validateString(string) {
 }
 
 export function validateEmail(email) {
-    
+
+    console.log('-----')
+
     // 1. Validar la presencia de caracteres especiales
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     const validation = emailRegex.test(email);
@@ -119,7 +121,7 @@ export function validatePassword(password) {
     const charactersPass = /[!"#$%&'()*+,-./:;<=>?@\[\]^_{|}~]/.test(password);
     if (!charactersPass) {
         return {
-            error: "La contraseña debe contener caracter especia (@={}[]#?%).",
+            error: "La contraseña debe contener al menos un caracter especial (@={}[]#?%).",
             isValid: false
         };
     }
@@ -130,12 +132,55 @@ export function validatePassword(password) {
             isValid: false
         };
     }
-  
+
+    let hasUpperCase = false;
+
+    for (let i = 0; i < password.length; i++) {
+        if (password[i] !== password[i].toLowerCase()) {
+            hasUpperCase = true;
+            break;
+        }
+    }
+
+    if (!hasUpperCase) {
+        return {
+            error: "La contraseña debe contener al menos una mayúscula.",
+            isValid: false
+        };
+    }
+
     // Si todas las validaciones pasan, la contraseña es válida
     return {
         error: null,
         isValid: true,
         evaluatedPassword: password
+    };
+}
+
+export function validatePhoneNumber(phoneNumber) {
+
+    // 1. Validar la longitud del phoneNumber
+    if (phoneNumber.length != 10) {
+        return {
+            error: "El número de teléfono debe tener 10 dígitos.",
+            isValid: false
+        };
+    }
+
+    // 2. Validar la presencia de letras
+    const containsNumbers = /[0-9]/.test(phoneNumber);
+    if (!containsNumbers) {
+        return {
+            error: "El número de teléfono solo debe contener números.",
+            isValid: false
+        };
+    }
+  
+    // Si todas las validaciones pasan, el phoneNumber es válido
+    return {
+        error: null,
+        isValid: true,
+        evaluatedString: phoneNumber
     };
 }
 

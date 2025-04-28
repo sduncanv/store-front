@@ -8,6 +8,11 @@ import { StoreContext } from '../../Context'
 import Layout from '../../Components/Layout'
 import AuthenticateUser from '../../Components/AuthenticateUser'
 import './Singup.css'
+import {
+    validateEmail, validateUsername, validatePassword, validatePhoneNumber,
+    allElementsTrue
+} from '../../Utils/index'
+
 
 function Singup() {
 
@@ -22,9 +27,30 @@ function Singup() {
     const [passwordLocal, setPasswordLocal] = useState('')
     const [phoneNumberLocal, setPhoneNumberLocal] = useState('')
 
+    const [validatedEmail, setValidatedEmail] = useState({})
+    const [validatedUsername, setValidatedUsername] = useState({})
+    const [validatedPassword, setValidatedPassword] = useState({})
+    const [validatedPhoneNumber, setValidatedPhoneNumber] = useState({})
+
+    const handleEmailChange = (event) => {
+        setEmailLocal(event.target.value)
+        setValidatedEmail(validateEmail(event.target.value))
+    }
+
     const handleUsernameChange = (event) => {
         setUsernameLocal(event.target.value)
+        setValidatedUsername(validateUsername(event.target.value))
         context.setUsernameToAuth(event.target.value)
+    }
+
+    const handlePasswordChange = (event) => {
+        setPasswordLocal(event.target.value)
+        setValidatedPassword(validatePassword(event.target.value))
+    }
+
+    const handlePhoneNumberChange = (event) => {
+        setPhoneNumberLocal(event.target.value)
+        setValidatedPhoneNumber(validatePhoneNumber(event.target.value))
     }
 
     const [showEye, setShowEye] = useState(false)
@@ -43,7 +69,7 @@ function Singup() {
                     'email': emailLocal,
                     'username': usernameLocal,
                     'password': passwordLocal,
-                    'phone_number': `+57${phoneNumberLocal}`, // Pendiente
+                    'phone_number': `+57${phoneNumberLocal}`,
                 }
             )
         }
@@ -61,6 +87,14 @@ function Singup() {
             })
     }
 
+    const resultValidationBotton = allElementsTrue([
+        validatedUsername.isValid,
+        validatedEmail.isValid,
+        validatedPassword.isValid,
+        validatedPhoneNumber.isValid,
+    ])
+
+    console.log('resultValidationBotton', resultValidationBotton)
 
     return (
         <Layout>
@@ -72,8 +106,13 @@ function Singup() {
                     <Input
                         type='email' name='email' className='InputSingup'
                         placeholder='Escribe tu correo electrónico.'
-                        onChange={(event) => setEmailLocal(event.target.value)}
+                        onChange={handleEmailChange}
                     />
+                    {
+                        !validatedEmail.isValid ? (
+                            <span className='error-signup'>{validatedEmail.error}</span>
+                        ) : (null)
+                    }
                 </FormControl>
 
                 <FormControl isRequired className='FormControl'>
@@ -83,6 +122,11 @@ function Singup() {
                         className='InputSingup' placeholder='Escribe tu usuario.'
                         onChange={handleUsernameChange}
                     />
+                    {
+                        !validatedUsername.isValid ? (
+                            <span className='error-signup'>{validatedUsername.error}</span>
+                        ) : (null)
+                    }
                 </FormControl>
 
                 <FormControl isRequired className='FormControl'>
@@ -91,7 +135,7 @@ function Singup() {
                         <Input
                             type={showEye ? 'text' : 'password'}
                             className='InputSingup' placeholder='Ingresa una contraseña.'
-                            onChange={(event) => setPasswordLocal(event.target.value)}
+                            onChange={handlePasswordChange}
                         />
                         <InputRightElement className='InputRightElement'>
                             <Button h='1.75rem' size='sm' onClick={handleClick}>
@@ -104,6 +148,11 @@ function Singup() {
                             </Button>
                         </InputRightElement>
                     </InputGroup>
+                    {
+                        !validatedPassword.isValid ? (
+                            <span className='error-signup'>{validatedPassword.error}</span>
+                        ) : (null)
+                    }
                 </FormControl>
 
                 <FormControl isRequired className='FormControl'>
@@ -111,8 +160,18 @@ function Singup() {
                     <Input
                         type='number' name='phone_number'
                         className='InputSingup' placeholder='Escribe tu número de teléfono.'
-                        onChange={(event) => setPhoneNumberLocal(event.target.value)}
+                        onChange={handlePhoneNumberChange}
+                        onKeyDown={(e) => {
+                            if (['e', 'E', '+', '-'].includes(e.key)) {
+                              e.preventDefault();
+                            }
+                        }}
                     />
+                    {
+                        !validatedPhoneNumber.isValid ? (
+                            <span className='error-signup'>{validatedPhoneNumber.error}</span>
+                        ) : (null)
+                    }
                 </FormControl>
 
                 {
@@ -131,10 +190,11 @@ function Singup() {
                             <Button
                                 type='submit' className='ButtonControlSingup'
                                 onClick={() => {CreateUser()}}
-                                loadingText='LLena todos los campos'
-                                // isLoading={!resultValidationBotton}
-                                // colorScheme={!resultValidationBotton ? 'teal' : 'gray'}
-                                // variant={!resultValidationBotton ? 'solid' : 'outline'}
+                                loadingText='Primero llena todos los campos'
+                                // isDisabled={resultValidationBotton}
+                                isLoading={!resultValidationBotton}
+                                colorScheme={!resultValidationBotton ? 'teal' : 'gray'}
+                                variant={!resultValidationBotton ? 'solid' : 'outline'}
                             >
                                 Crear cuenta
                             </Button>
