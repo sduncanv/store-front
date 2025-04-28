@@ -9,7 +9,7 @@ import ProductPage from '../ProductPage'
 import CreateProduct from '../CreateProduct'
 import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
 import Profile from '../Profile'
-// import Footer from '../../Components/Footer'
+import Footer from '../../Components/Footer'
 
 
 const App = () => {
