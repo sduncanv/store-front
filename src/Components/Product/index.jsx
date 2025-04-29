@@ -4,22 +4,23 @@ import { PlusIcon, CheckIcon } from '@heroicons/react/24/solid'
 import { StoreContext } from '../../Context'
 import './Product.css'
 
+
 const Product = (data) => {
 
     const context = useContext(StoreContext)
 
     const addProductToCart = (event, productData) => {
-        event.stopPropagation();
-        context.setCount(context.count + 1);
-        context.setCartProducts([...context.cartProducts, productData]);
-        context.openCheckoutSideMenu();
+        event.stopPropagation()
+        context.setCount(context.count + 1)
+        context.setCartProducts([...context.cartProducts, productData])
+        context.openCheckoutSideMenu()
     }
 
     const removeProductToCart = (event, productData) => {
-        event.stopPropagation();
-        context.setCount(context.count - 1);
-        const filteredProducts = context.cartProducts.filter(product => product.product_id != productData.product_id);
-        context.setCartProducts(filteredProducts);
+        event.stopPropagation()
+        context.setCount(context.count - 1)
+        const filteredProducts = context.cartProducts.filter(product => product.product_id != productData.product_id)
+        context.setCartProducts(filteredProducts)
     }
 
     const renderIcon = (product_id) => {
@@ -48,11 +49,11 @@ const Product = (data) => {
 
     }
 
-    const price = Number(data.data.price);
+    const price = Number(data.data.price)
     const formattedPrice = price.toLocaleString('es-CO', {
         style: 'decimal',
         minimumFractionDigits: 0,
-    });
+    })
     const price_com = `$ ${formattedPrice}`
 
     return (

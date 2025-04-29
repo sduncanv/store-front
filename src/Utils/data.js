@@ -33,7 +33,9 @@ export const all_products = {
             "created_at": "2024-07-18 20:27:34",
             "updated_at": "2024-07-18 20:27:34",
             "url": "https://cdn-images.farfetch-contents.com/18/90/65/88/18906588_41130828_1000.jpg",
-            "product_type_name": "Ropa"
+            "product_type_name": "Ropa",
+            "phone_number": "+573011561394",
+            "username": "user001",
         },
         {
             "product_id": 2,
@@ -46,7 +48,9 @@ export const all_products = {
             "created_at": "2024-07-18 20:28:48",
             "updated_at": "2024-07-18 20:28:48",
             "url": "https://acdn.mitiendanube.com/stores/002/413/552/products/x001-b8a45680c3a1883c8e169738468713791-2a2b3d0b3f1ac46b5e16973849453376-1024-1024.webp",
-            "product_type_name": "Electronica"
+            "product_type_name": "Electronica",
+            "phone_number": "+573011561394",
+            "username": "user001",
         },
         {
             "product_id": 3,
@@ -59,7 +63,9 @@ export const all_products = {
             "created_at": "2024-07-18 20:28:48",
             "updated_at": "2024-07-18 20:28:48",
             "url": "https://acdn.mitiendanube.com/stores/002/413/552/products/x001-b8a45680c3a1883c8e169738468713791-2a2b3d0b3f1ac46b5e16973849453376-1024-1024.webp",
-            "product_type_name": "Electronica"
+            "product_type_name": "Electronica",
+            "phone_number": "+573011561394",
+            "username": "user001",
         },
         {
             "product_id": 4,
@@ -72,7 +78,9 @@ export const all_products = {
             "created_at": "2024-07-18 20:28:48",
             "updated_at": "2024-07-18 20:28:48",
             "url": "https://acdn.mitiendanube.com/stores/002/413/552/products/x001-b8a45680c3a1883c8e169738468713791-2a2b3d0b3f1ac46b5e16973849453376-1024-1024.webp",
-            "product_type_name": "Electronica"
+            "product_type_name": "Electronica",
+            "phone_number": "+573011561394",
+            "username": "user001",
         },
         {
             "product_id": 5,
@@ -85,7 +93,9 @@ export const all_products = {
             "created_at": "2024-07-18 20:27:34",
             "updated_at": "2024-07-18 20:27:34",
             "url": "https://acdn.mitiendanube.com/stores/002/413/552/products/x001-b8a45680c3a1883c8e169738468713791-2a2b3d0b3f1ac46b5e16973849453376-1024-1024.webp",
-            "product_type_name": "Electronica"
+            "product_type_name": "Electronica",
+            "phone_number": "+573011561394",
+            "username": "user001",
         },
         {
             "product_id": 6,
@@ -98,7 +108,9 @@ export const all_products = {
             "created_at": "2024-07-18 20:28:48",
             "updated_at": "2024-07-18 20:28:48",
             "url": "https://acdn.mitiendanube.com/stores/002/413/552/products/x001-b8a45680c3a1883c8e169738468713791-2a2b3d0b3f1ac46b5e16973849453376-1024-1024.webp",
-            "product_type_name": "Electronica"
+            "product_type_name": "Electronica",
+            "phone_number": "+573011561394",
+            "username": "user001",
         },
         {
             "product_id": 7,
@@ -111,7 +123,9 @@ export const all_products = {
             "created_at": "2024-07-18 20:28:48",
             "updated_at": "2024-07-18 20:28:48",
             "url": "https://acdn.mitiendanube.com/stores/002/413/552/products/x001-b8a45680c3a1883c8e169738468713791-2a2b3d0b3f1ac46b5e16973849453376-1024-1024.webp",
-            "product_type_name": "Electronica"
+            "product_type_name": "Electronica",
+            "phone_number": "+573011561394",
+            "username": "user001",
         },
         {
             "product_id": 8,
@@ -124,7 +138,9 @@ export const all_products = {
             "created_at": "2024-07-18 20:28:48",
             "updated_at": "2024-07-18 20:28:48",
             "url": "https://acdn.mitiendanube.com/stores/002/413/552/products/x001-b8a45680c3a1883c8e169738468713791-2a2b3d0b3f1ac46b5e16973849453376-1024-1024.webp",
-            "product_type_name": "Electronica"
+            "product_type_name": "Electronica",
+            "phone_number": "+573011561394",
+            "username": "user001",
         },
     ]
 }

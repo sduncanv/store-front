@@ -214,3 +214,13 @@ export function getDate() {
         formattedCurrentDate: formattedCurrentDate
     };
 }
+
+export function getIdVendors(products) {
+    let ids = []
+    for (let i = 0; i < products.length; i++) {
+        if (!ids.includes(products[i].user_id)) {
+            ids.push(products[i].user_id)
+        }
+    }
+    return ids
+}

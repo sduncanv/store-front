@@ -2,11 +2,14 @@ import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { StoreContext } from '../../Context'
 import {
-    Input, Button, FormControl, FormLabel, Select, Textarea,
+    Input, Button, FormControl, FormLabel, Select, Box
 } from '@chakra-ui/react'
 import Layout from '../../Components/Layout'
 import './CreateProduct.css'
 import { getDate } from '../../Utils/index'
+
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
 
 
 const CreateProduct = () => {
@@ -21,6 +24,15 @@ const CreateProduct = () => {
     const [newDescriptionProduct, setNewDescriptionProduct] = useState('')
     const [newImageProduct, setnewImageProduct] = useState('')
     const [previewImage, setPreviewImage] = useState('')
+
+    const modules = {
+        toolbar: [
+            ['bold', 'italic', 'underline'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            ['link'],
+            ['clean']
+        ],
+    }
 
     const renderTypeProducts = () => {
 
@@ -45,8 +57,6 @@ const CreateProduct = () => {
         if (file) {
             const reader = new FileReader()
             reader.onloadend = () => {
-                // const base64String = reader.result.replace('data:', '').replace(/^.+,/, '')
-                // setnewImageProduct(base64String)
 
                 const fullBase64 = reader.result
                 const pureBase64 = fullBase64.split(',')[1]
@@ -105,7 +115,7 @@ const CreateProduct = () => {
         <Layout>
             <div className='create-and-detail-product'>
                 <div className='create-product-main'>
-                    <h1 className='singup-title'>Crea y visualiza tu producto</h1>
+                    <h1 className='cadp-title'>Crea y visualiza tu producto</h1>
 
                     <FormControl className='FormControl' isRequired>
                         <FormLabel className='FormLabelSingup' >Escribe el nombre del producto</FormLabel>
@@ -136,9 +146,7 @@ const CreateProduct = () => {
                             placeholder='Categoría del producto'
                             onChange={(event) => setNewTypeProduct(event.target.value)}
                         >
-                            {/* {renderTypeProducts()} */}
-                            <option key='1' value='1'>Ropaaa</option>
-                            <option key='2' value='2'>Electrooo</option>
+                            {renderTypeProducts()}
                         </Select>
                     </FormControl>
 
@@ -150,13 +158,31 @@ const CreateProduct = () => {
                         ></input>
                     </FormControl>
 
-                    <FormControl className='FormControl' isRequired>
+                    {/* <FormControl className='FormControl' isRequired>
                         <FormLabel className='FormLabelSingup' >Descripción del producto</FormLabel>
                         <Textarea
                             onChange={(event) => setNewDescriptionProduct(event.target.value)}
                             className='create-p-textarea'
                             placeholder='Escribe detalles del producto'
                         />
+                    </FormControl> */}
+
+                    <FormControl className='FormControl' isRequired>
+                        <FormLabel className='FormLabelSingup'>Descripción del producto</FormLabel>
+                        <Box bg="white" borderRadius="md" _focusWithin={{ boxShadow: 'outline' }}>
+                            <ReactQuill
+                                value={newDescriptionProduct}
+                                onChange={setNewDescriptionProduct}
+                                modules={modules}
+                                placeholder="Escribe una descripción detallada..."
+                                style={{ 
+                                    height: '200px',
+                                    border: 'none',
+                                    fontFamily: 'Inter, sans-serif',
+                                    marginBottom: '40px' // Espacio para la toolbar
+                                }}
+                            />
+                        </Box>
                     </FormControl>
 
                     {
@@ -184,16 +210,12 @@ const CreateProduct = () => {
                         <h1>{newNameProduct}</h1>
                         <h3>$ {formattedPrice}</h3>
                         <br />
-                        <p>{newDescriptionProduct}</p>
+                        <div dangerouslySetInnerHTML={{ __html: newDescriptionProduct }} />
                         <br />
-                        <p>
-                            {date.formattedCurrentDate}
-                        </p>
+                        <p>{date.formattedCurrentDate}</p>
                     </div>
                     <div className='product-image'>
                         <figure>
-                            {/* <img src="https://acdn.mitiendanube.com/stores/002/413/552/products/x001-b8a45680c3a1883c8e169738468713791-2a2b3d0b3f1ac46b5e16973849453376-1024-1024.webp" alt="" /> */}
-                            {/* <img src={previewImage} alt="Vista previa" /> */}
                             <img src={previewImage ? previewImage : 'https://www.tenvinilo.co/build/images/web/services/upload.jpg'} alt="Vista previa" />
                         </figure>
                     </div>
