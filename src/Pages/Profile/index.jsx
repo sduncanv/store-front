@@ -1,67 +1,61 @@
-import { useContext, useEffect, useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import { useContext, useEffect, useState, useCallback } from 'react'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { StoreContext } from '../../Context'
 import Layout from '../../Components/Layout'
 import Product from '../../Components/Product'
 import './Profile.css'
-import { Button
-} from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
 import HeaderProfile from '../../Components/HeaderProfile'
-import { dataPro } from '../../Utils/data'
+
 
 const Profile = () => {
 
-    const context = useContext(StoreContext);
+    const { username } = useParams()
+    const location = useLocation()
+    const context = useContext(StoreContext)
 
-    // useEffect(() => {
-    //     if (Object.keys(context.productsUser).length === 0) {
-    //         // fetchProductsUser();
-    //     }
-    // }, []);
+    const userFromState = location.state?.user
+    const [responseGetUser, setResponseGetUser] = useState(userFromState || null)
+
+    useEffect(() => {
+        if (!userFromState && username) {
+            const URL = `http://localhost:3003/dev/user?username=${username}`
+            fetch(URL)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.statusCode == 200) {
+                        setResponseGetUser(data.data[0])
+                    } else {
+                        console.log("Error solicitando datos de un usuario.")
+                    }
+                })
+        }
+    }, [username, userFromState])
 
     const renderAllProducts = () => {
 
-        // if (context.productsUser?.length > 0) {
-        //     return (
-        //         context.productsUser?.map(product => (
-        //             <Product key={product.product_id} data={product} />
-        //         ))
-        //     )
-        // }
+        const user_id = responseGetUser?.user_id
 
-        const user_id = context.responseGetUser?.user_id
+        if (!user_id || !context.allProducts) return <p>Cargando productos...</p>
 
-        const filteredProductsByUser = context.allProducts?.filter( // allProducts es una lista
+        const filteredProductsByUser = context.allProducts?.filter(
             product => product.user_id === user_id
         )
 
-        if (filteredProductsByUser?.length > 0) {
-            return (
-                filteredProductsByUser?.map(product => (
-                    <Product key={product.product_id} data={product} />
-                ))
-            )
+        if (filteredProductsByUser.length === 0) {
+            return <p>No hay productos para este usuario.</p>
         }
+
+        return (
+            filteredProductsByUser?.map(product => (
+                <Product key={product.product_id} data={product} />
+            ))
+        )
     }
 
     return (
         <Layout>
-            {/* <div className='profile-header'>
-                <figure>
-                    <img src="https://img.freepik.com/vector-gratis/hombre-guapo-joven-aislado-diferentes-poses-ilustracion-fondo-blanco_632498-859.jpg?size=338&ext=jpg&ga=GA1.1.672697106.1719100800&semt=ais_user" alt="" />
-                </figure>
-                <h1>SamuelDuncan</h1>
-            </div>
-            <div className='buttonCreate'>
-                <Button
-                    type='submit'
-                >
-                    <NavLink to='/crear-producto'>
-                        Crear producto
-                    </NavLink>
-                </Button>
-            </div> */}
-            <HeaderProfile />
+            <HeaderProfile key={responseGetUser?.user_id} data={responseGetUser} />
             <div className='buttons-profile'>
                 <Link to='/create-product'>
                     <Button

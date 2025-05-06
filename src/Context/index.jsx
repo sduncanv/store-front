@@ -1,8 +1,9 @@
-import { createContext, useState, useEffect, useContext } from 'react'
+import { createContext, useState, useEffect, useContext, useCallback } from 'react'
 import { useLocation, Navigate } from 'react-router-dom'
 import { all_products, type_products } from '../Utils/data'
 
 export const StoreContext = createContext()
+
 
 export const StoreProvider = ({children}) => {
 
@@ -15,12 +16,18 @@ export const StoreProvider = ({children}) => {
     // const [allProducts, setAllProducts] = useState([])
     const [allProducts, setAllProducts] = useState(all_products.data) // Borrar, datos de prueba
 
-    // const URL_ALL_PRODUCTS = 'http://localhost:3004/dev/products'
+    const URL_ALL_PRODUCTS = 'http://localhost:3004/dev/products'
     // const getAllProducts = () => {
     //     fetch(URL_ALL_PRODUCTS)
     //         .then(response => response.json())
     //         .then(data => setAllProducts(data.data))
     // }
+
+    // const getAllProducts = useCallback(() => {
+    //     fetch(URL_ALL_PRODUCTS)
+    //         .then(response => response.json())
+    //         .then(data => setAllProducts(data.data));
+    // }, [])
 
     // useEffect(() => {
     //     getAllProducts()

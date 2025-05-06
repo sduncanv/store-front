@@ -8,6 +8,7 @@ import { Avatar, AvatarBadge, AvatarGroup, Wrap, WrapItem } from '@chakra-ui/rea
 import { StoreContext } from '../../Context'
 import './Navbar.css'
 
+
 const Navbar = () => {
 
     const context = useContext(StoreContext)
@@ -40,7 +41,7 @@ const Navbar = () => {
                         <NavLink to='/profile'>
                             <Wrap className='navbar-wrap'>
                                 <WrapItem className='navbar-wrap-item'>
-                                    <Avatar className='navbar-avatar' name={context.responseGetUser?.name} src='https://bit.ly/dan-abramov' />
+                                    <Avatar className='navbar-avatar' name={context.responseGetUser?.name} src={context.responseGetUser?.url} />
                                 </WrapItem>
                             </Wrap>
                         </NavLink>
@@ -90,17 +91,6 @@ const Navbar = () => {
                             <button className='navbar-input-botton'>🔍</button>
                         </div>
                     </li>
-                </ul>
-                <ul className='navbar-ul'>
-                    {
-                        context.userData ? (
-                            <li className='navbar-li-2 username'>
-                                <NavLink to='/perfil'>
-                                    {context.userData.username}
-                                </NavLink>
-                            </li>
-                        ) : (null)
-                    }
                 </ul>
             */}
         </nav>

@@ -1,6 +1,7 @@
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import './OrderCart.css'
 
+
 const OrderCart = props => {
     const { id, title, imageUrl, price, handleDelete } = props
 

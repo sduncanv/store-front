@@ -12,6 +12,7 @@ import {
     validateEmail, validateUsername, validatePassword, validatePhoneNumber,
     allElementsTrue
 } from '../../Utils/index'
+import { getDate } from '../../Utils/index'
 
 
 function Singup() {
@@ -59,19 +60,51 @@ function Singup() {
     const [isErrorInSignUp, setIsErrorInSignUp] = useState(false)
     const [isCreated, setIsCreated] = useState(false)
 
+    const [newImageProduct, setnewImageProduct] = useState('')
+    console.log('newImageProduct ----> ', newImageProduct)
+
+    const handleFileChange = (event) => {
+
+        const file = event.target.files[0]
+
+        if (file) {
+            const reader = new FileReader()
+            reader.onloadend = () => {
+
+                const fullBase64 = reader.result
+                const pureBase64 = fullBase64.split(',')[1]
+
+                setnewImageProduct(pureBase64)
+            }
+            reader.readAsDataURL(file)
+        }
+    }
+
     const CreateUser = () => {
+
+        const requestData = {
+            'email': emailLocal,
+            'username': usernameLocal,
+            'password': passwordLocal,
+            'phone_number': `+57${phoneNumberLocal}`,
+            
+        }
+        
+        if (newImageProduct != '') {
+
+            const date = getDate()
+            const filename = `user_${usernameLocal}-date_${date.formattedDate}`
+
+            requestData.file = {
+                'filename': filename,
+                'image': newImageProduct,
+            }
+        }
 
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(
-                {
-                    'email': emailLocal,
-                    'username': usernameLocal,
-                    'password': passwordLocal,
-                    'phone_number': `+57${phoneNumberLocal}`,
-                }
-            )
+            body: JSON.stringify(requestData)
         }
 
         const URL = 'http://localhost:3003/dev/user'
@@ -172,6 +205,14 @@ function Singup() {
                             <span className='error-signup'>{validatedPhoneNumber.error}</span>
                         ) : (null)
                     }
+                </FormControl>
+
+                <FormControl className='FormControl'>
+                    <FormLabel className='FormLabelSingup' >Imagen</FormLabel>
+                    <input
+                        onChange={handleFileChange}
+                        type="file" name="image" id="image"  accept="image/*"
+                    ></input>
                 </FormControl>
 
                 {

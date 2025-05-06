@@ -97,7 +97,7 @@ const CreateProduct = () => {
             .then(response => response.json())
             .then(data => {
                 if (data.statusCode == 200) {
-                    // context.getAllProducts()
+                    context.getAllProducts()
                     setIsErrorInCreateProduct(false)
                     navigate('/')
                 } else {

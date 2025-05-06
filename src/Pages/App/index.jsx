@@ -30,11 +30,14 @@ const App = () => {
                             </AuthRoute>
                         } />
 
-                        <Route path='/profile' element={
+                        <Route path='/profile/:username' element={<Profile />} />
+
+                        {/* <Route path='/profile' element={
                             <AuthRoute>
                                 <Profile />
                             </AuthRoute>
-                        } />
+                        } /> */}
+
                     </Routes>
                     <CheckoutSideMenu />
                     {/* <Footer /> */}

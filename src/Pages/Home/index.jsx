@@ -4,6 +4,7 @@ import Layout from '../../Components/Layout'
 import Product from '../../Components/Product'
 import './Home.css'
 
+
 function Home() {
 
     const context = useContext(StoreContext)

@@ -9,7 +9,7 @@ function ProductPage() {
 
     const location = useLocation()
     const productFromState = location.state?.product
-    const [responseGetProduct, setRespondeGetProduct] = useState(productFromState || null)
+    const [responseGetProduct, setResponseGetProduct] = useState(productFromState || null)
 
     const { product_id } = useParams()
 
@@ -20,7 +20,7 @@ function ProductPage() {
                 .then(response => response.json())
                 .then(data => {
                     if (data.statusCode == 200) {
-                        setRespondeGetProduct(data.data[0])
+                        setResponseGetProduct(data.data[0])
                     } else {
                         console.log("Error solicitando datos de un producto.")
                     };
@@ -54,7 +54,8 @@ function ProductPage() {
                         <Button className='ppm-Button' {...inc}>+</Button>
                     </HStack> */}
                     <br />
-                    <p>{responseGetProduct.description}</p>
+                    {/* <p>{responseGetProduct.description}</p> */}
+                    <div dangerouslySetInnerHTML={{ __html: responseGetProduct.description }} />
                     <br />
                     <p>{responseGetProduct.created_at}</p>
                 </div>
